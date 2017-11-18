@@ -29,5 +29,9 @@
 		</property>
 		<property name="packagesToScan" value="com.AndriiGubarenko.mentalHealth.domain"/>
 	</bean>
+	
+	<bean id="tokenManager" class="com.AndriiGubarenko.mentalHealth.security.TokenManager">
+		<constructor-arg name="privateKey" value="SuperSecretKey"/>
+	</bean>
 
 </beans>
