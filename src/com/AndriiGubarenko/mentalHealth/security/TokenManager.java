@@ -1,32 +1,35 @@
 package com.AndriiGubarenko.mentalHealth.security;
 
-import java.util.Date;
+import java.security.Key;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 public class TokenManager {
 	private String privateKey;
+	SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
 
 	public TokenManager(String privateKey) {
 		this.privateKey = privateKey;
 	}
 
 	public String createToken(TokenPayload payload) {
-		String mixedPayload = createMixedTokenPayload(payload);
-		String sign = createSign(mixedPayload);
-		String token = String.format("%s#%s", mixedPayload, sign);
-		return token;
+		JwtBuilder builder = Jwts.builder().setId(payload.getUserId().toString())
+                .setIssuedAt(payload.getCreatedTime())
+                .setSubject(payload.getLogin())
+                .signWith(signatureAlgorithm, createSign());
+		return builder.compact();
 	}
 	
-	private String createMixedTokenPayload(TokenPayload payload) {
-		String createdTime = String.valueOf(payload.getCreatedTime().getTime());
-		String id = String.valueOf(payload.getUserId());
-		String login = payload.getLogin();
-		String mix = String.format("%s#%s#%s", id, login, createdTime);
-		
-		return mix;
-	}
-	//TODO: real electronic sign
-	private String createSign(String mixedPayload) {
-		return "" + mixedPayload.charAt(0) + privateKey.charAt(2) + mixedPayload.charAt(4) + mixedPayload.charAt(7);
+	private Key createSign() {
+		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(privateKey);
+	    Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+		return signingKey;
 	}
 
 	public boolean verifyToken(String token) {
@@ -36,12 +39,10 @@ public class TokenManager {
 	}
 
 	public TokenPayload extractPayload(String token) {
-		String[] tokenParts = token.split("#");
-		Date createdTime = new Date(Long.valueOf(tokenParts[0]));
-		Long id = Long.valueOf(tokenParts[1]);
-		String login = tokenParts[3];
-		
-		TokenPayload payload = new TokenPayload(id, login, createdTime);
+		Claims claims = Jwts.parser()         
+			       .setSigningKey(DatatypeConverter.parseBase64Binary(privateKey))
+			       .parseClaimsJws(token).getBody();
+		TokenPayload payload = new TokenPayload(Long.valueOf(claims.getId()), claims.getSubject(), claims.getIssuedAt());
 		
 		return payload;
 	}
