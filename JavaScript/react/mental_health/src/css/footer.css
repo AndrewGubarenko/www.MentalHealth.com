@@ -1,0 +1,18 @@
+.Footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 10px 0 10px 0;
+  font-family: sans-serif;
+  color: white;
+  background-color: #6495ED;
+}
+
+.Footer p{
+    margin-left: 100px;
+}
+
+.Footer:hover {
+  color: #000080;
+  transition: 1s;
+}

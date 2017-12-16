@@ -1,0 +1,49 @@
+#NavigationBar {
+  display: inline-block;
+  width: 250px;
+  float: left;
+  margin: 50px 0 0 50px;
+}
+
+#img {
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  border: 1px solid skyblue;
+  background-color: white;
+  background-image: url(../icons/Menu_icon1.png);
+  border-radius: 10px;
+}
+
+#list{
+  width: 170px;
+  height: 145px;
+  left: 0;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid skyblue;
+  display: none;
+}
+
+#list ul li {
+  text-decoration: none;
+  color: grey;
+  text-align: left;
+  padding: 5px 20px 5px 5px;
+}
+#list ul li:hover {
+  border: 1px solid skyblue;
+}
+
+ #list ul li a{
+   text-decoration: none;
+   color: grey;
+ }
+
+ #img:hover ~ #list {
+   display: block;
+ }
+
+ #list:hover {
+   display: block;
+ }

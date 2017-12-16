@@ -1,0 +1,24 @@
+.Container {
+  display: inline-block;
+  height: auto;
+  margin: 15% auto auto 10%;
+  padding: 10px;
+  width: 50%;
+  background-color: #DCDCDC;
+  border-radius: 10px;
+}
+
+.WelcomeContent {
+  margin: 10px auto 10px 10%;
+}
+
+.WelcomeContent a {
+  font-weight: bold;
+  color: 	#009ACD;
+  text-decoration: none;
+}
+
+.WelcomeContent a:hover{
+  color: #6495ED;
+  transition: 1s;
+}
