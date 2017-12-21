@@ -1,14 +1,11 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +22,8 @@ public class User {
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	
-	//Решить проблему
-	@OneToMany(mappedBy = "user")
-	private Set<UserProfile> userProfile = new HashSet<>();
+	@OneToOne(mappedBy = "user")
+	private UserProfile userProfile;
 	
 	public String getLogin() {
 		return login;
@@ -53,7 +49,7 @@ public class User {
 		this.id = id;
 	}
 
-	public Set<UserProfile> getUserProfile() {
+	public UserProfile getUserProfile() {
 		return userProfile;
 	}
 
@@ -62,7 +58,7 @@ public class User {
 	}
 	
 	public void addUserProfile(UserProfile userProfile, boolean otherSideHasBeenAlreadySet) {
-		getUserProfile().add(userProfile);
+		this.userProfile = userProfile;
 		if(otherSideHasBeenAlreadySet) {
 			return;
 		}
