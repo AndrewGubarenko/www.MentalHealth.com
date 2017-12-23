@@ -1,7 +1,7 @@
 .Footer {
-  position: absolute;
+  position: fixed;
+  bottom: 0px;
   width: 100%;
-  bottom: 0;
   padding: 10px 0 10px 0;
   font-family: sans-serif;
   color: white;

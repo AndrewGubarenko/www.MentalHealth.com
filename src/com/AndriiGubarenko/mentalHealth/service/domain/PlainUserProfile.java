@@ -7,6 +7,8 @@ public class PlainUserProfile {
 	private Long id;
 
 	private String name;
+	
+	private String surname;
 
 	private String speciality;
 
@@ -20,9 +22,17 @@ public class PlainUserProfile {
 	
 	private double raiting;
 	
-	private String comments;
+	//private String comments;
 	
-	private String contacts;
+	private String phoneNumber;
+	
+	private String email;
+	
+	private String linkedin;
+
+	private String facebook;
+	
+	private String skype;
 	
 	//private BufferedImage userPhoto;
 	
@@ -35,13 +45,21 @@ public class PlainUserProfile {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getSpeciality() {
@@ -92,6 +110,7 @@ public class PlainUserProfile {
 		this.raiting = raiting;
 	}
 
+	/*
 	public String getComments() {
 		return comments;
 	}
@@ -99,13 +118,21 @@ public class PlainUserProfile {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
-	public String getContacts() {
-		return contacts;
+*/
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setContacts(String contacts) {
-		this.contacts = contacts;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 /*
 	public BufferedImage getUserPhoto() {
@@ -123,5 +150,28 @@ public class PlainUserProfile {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getSkype() {
+		return skype;
+	}
+
+	public void setSkype(String skype) {
+		this.skype = skype;
+	}	
 }

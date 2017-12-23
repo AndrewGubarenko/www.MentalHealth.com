@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-//Сделать ссылку по логину юзера
+//Сделать ссылку по логину юзера для отобрадения
 @Table(name = "USERPROFILE")
 public class UserProfile {
 	
@@ -25,6 +25,9 @@ public class UserProfile {
 	
 	@Column(name = "NAME", nullable = false)
 	private String name;
+	
+	@Column(name = "SURNAME", nullable = false)
+	private String surname;
 	
 	//Сделать систему подсказок для заполнения
 	@Column(name = "SPECIALITY", nullable = false)
@@ -49,27 +52,47 @@ public class UserProfile {
 	//Сделать систему рейтингов и задание изначального рейтинга новому юзеру
 	@Column(name = "RAITING", nullable = false)
 	private double raiting;
-	
+/*	
 	//Сделать форму для отзывов
 	@Column(name = "COMMENTS")
 	private String comments;
+*/	
+
+	@Column(name = "PHONENUMBER")
+	private String phoneNumber;
 	
-	//Создать метод контакты (мыло, фб, линк, скайп и тел)
-	@Column(name = "CONTACTS", nullable = false)
-	private String contacts;
+	@Column(name = "EMAIL", nullable = false)
+	private String email;
+	
+	@Column(name = "IN")
+	private String linkedin;
+	
+	@Column(name = "FB")
+	private String facebook;
+	
+	@Column(name = "SKYPE")
+	private String skype;
 	
 	//private File userPhoto;
 	
 	@OneToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getSpeciality() {
@@ -111,7 +134,7 @@ public class UserProfile {
 	public void setRaiting(double raiting) {
 		this.raiting = raiting;
 	}
-
+/*
 	public String getComments() {
 		return comments;
 	}
@@ -119,14 +142,8 @@ public class UserProfile {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+*/
 
-	public String getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(String contacts) {
-		this.contacts = contacts;
-	}
 
 	/*
 	public BufferedImage getUserPhoto() {
@@ -187,5 +204,44 @@ public class UserProfile {
 		}
 		user.addUserProfile(this, true);
 	}
-	
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getSkype() {
+		return skype;
+	}
+
+	public void setSkype(String skype) {
+		this.skype = skype;
+	}	
 }

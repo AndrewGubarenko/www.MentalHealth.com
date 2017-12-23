@@ -1,0 +1,50 @@
+.CreateFormStyle {
+  display: inline-block;
+  margin: 5% auto 10% 30%;
+  padding: 10px;
+  width: 40%;
+}
+
+.Calendar {
+  border-radius: 7px;
+  height: 25px;
+  width: 350px;
+  padding: 2px;
+  font-size: 18px;
+  font-family: sans-serif;
+}
+
+#large-form-control {
+  border-radius: 7px;
+  min-height: 250px;
+  min-width: 350px;
+  max-width: 350px;
+  padding: 2px;
+  font-size: 18px;
+}
+
+#photo {
+  width: 200px;
+  height: 250px;
+  margin-left: 360px;
+  float: bottom;
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+
+#price-form-control {
+  border-radius: 7px;
+  height: 25px;
+  width: 250px;
+  padding: 2px;
+  font-size: 18px;
+}
+
+#currency {
+  margin-left: 13px;
+  border-radius: 7px;
+  height: 33px;
+  width: 85px;
+  padding: 2px;
+  font-size: 18px;
+}

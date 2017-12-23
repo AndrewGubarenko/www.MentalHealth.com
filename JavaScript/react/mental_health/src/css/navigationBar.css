@@ -1,4 +1,5 @@
 #NavigationBar {
+  position: fixed;
   display: inline-block;
   width: 250px;
   float: left;
@@ -30,6 +31,7 @@
   color: grey;
   text-align: left;
   padding: 5px 20px 5px 5px;
+  border: 1px solid white;
 }
 #list ul li:hover {
   border: 1px solid skyblue;

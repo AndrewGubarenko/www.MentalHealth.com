@@ -30,14 +30,19 @@ public class UserProfileService {
 		PlainUserProfile plainUserProfile = new PlainUserProfile();
 		
 		plainUserProfile.setName(userProfile.getName());
+		plainUserProfile.setSurname(userProfile.getSurname());
 		plainUserProfile.setSpeciality(userProfile.getSpeciality());
 		plainUserProfile.setEssay(userProfile.getEssay());
 		plainUserProfile.setPrice(userProfile.getPrice());
 		plainUserProfile.setExperience(userProfile.getExperience());
 		plainUserProfile.setBirthday(userProfile.getBirthday());
 		plainUserProfile.setRaiting(userProfile.getRaiting());
-		plainUserProfile.setComments(userProfile.getComments());
-		plainUserProfile.setContacts(userProfile.getContacts());
+		//plainUserProfile.setComments(userProfile.getComments());
+		plainUserProfile.setPhoneNumber(userProfile.getPhoneNumber());
+		plainUserProfile.setEmail(userProfile.getEmail());
+		plainUserProfile.setLinkedin(userProfile.getLinkedin());
+		plainUserProfile.setFacebook(userProfile.getFacebook());
+		plainUserProfile.setSkype(userProfile.getSkype());
 		//plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
 		
 		return plainUserProfile;
@@ -47,14 +52,19 @@ public class UserProfileService {
 		UserProfile userProfile = new UserProfile();
 
 		userProfile.setName(plainUserProfile.getName());
+		userProfile.setSurname(plainUserProfile.getSurname());
 		userProfile.setSpeciality(plainUserProfile.getSpeciality());
 		userProfile.setEssay(plainUserProfile.getEssay());
 		userProfile.setPrice(plainUserProfile.getPrice());
 		userProfile.setExperience((Date)plainUserProfile.getExperience().clone());
 		userProfile.setBirthday((Date)plainUserProfile.getBirthday().clone());
 		userProfile.setRaiting(plainUserProfile.getRaiting());
-		userProfile.setComments(plainUserProfile.getComments());
-		userProfile.setContacts(plainUserProfile.getContacts());
+		//userProfile.setComments(plainUserProfile.getComments());
+		userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
+		userProfile.setEmail(plainUserProfile.getEmail());
+		userProfile.setLinkedin(plainUserProfile.getLinkedin());
+		userProfile.setFacebook(plainUserProfile.getFacebook());
+		userProfile.setSkype(plainUserProfile.getSkype());
 		//userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		
 		User user = entityManager.find(User.class, userId);
