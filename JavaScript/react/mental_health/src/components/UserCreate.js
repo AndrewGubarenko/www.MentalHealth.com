@@ -1,4 +1,5 @@
 import React from 'react'
+import Raiting from './Raiting'
 
 export default class UserCreate extends React.Component {
   render(){
@@ -50,7 +51,7 @@ export default class UserCreate extends React.Component {
 
           <div className="FormStyle-block">
             <label className="form-label">Raiting:</label>
-            <input className="form-control" type="text" />
+            <Raiting />
           </div>
 
           <div className="FormStyle-block">
