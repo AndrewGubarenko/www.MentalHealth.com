@@ -29,20 +29,23 @@ public class UserProfileService {
 	private PlainUserProfile convert(UserProfile userProfile) {
 		PlainUserProfile plainUserProfile = new PlainUserProfile();
 		
+		plainUserProfile.setId(userProfile.getId());
 		plainUserProfile.setName(userProfile.getName());
 		plainUserProfile.setSurname(userProfile.getSurname());
 		plainUserProfile.setSpeciality(userProfile.getSpeciality());
 		plainUserProfile.setEssay(userProfile.getEssay());
 		plainUserProfile.setPrice(userProfile.getPrice());
+		plainUserProfile.setCurrency(userProfile.getCurrency());
 		plainUserProfile.setExperience(userProfile.getExperience());
 		plainUserProfile.setBirthday(userProfile.getBirthday());
-		plainUserProfile.setRaiting(userProfile.getRaiting());
+		plainUserProfile.setRating(userProfile.getRating());
 		//plainUserProfile.setComments(userProfile.getComments());
 		plainUserProfile.setPhoneNumber(userProfile.getPhoneNumber());
 		plainUserProfile.setEmail(userProfile.getEmail());
 		plainUserProfile.setLinkedin(userProfile.getLinkedin());
 		plainUserProfile.setFacebook(userProfile.getFacebook());
 		plainUserProfile.setSkype(userProfile.getSkype());
+		plainUserProfile.setUserId(userProfile.getUser().getId());
 		//plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
 		
 		return plainUserProfile;
@@ -50,15 +53,17 @@ public class UserProfileService {
 	
 	private UserProfile create(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 		UserProfile userProfile = new UserProfile();
-
+		
+		userProfile.setId(plainUserProfile.getId());
 		userProfile.setName(plainUserProfile.getName());
 		userProfile.setSurname(plainUserProfile.getSurname());
 		userProfile.setSpeciality(plainUserProfile.getSpeciality());
 		userProfile.setEssay(plainUserProfile.getEssay());
 		userProfile.setPrice(plainUserProfile.getPrice());
+		userProfile.setCurrency(plainUserProfile.getCurrency());
 		userProfile.setExperience((Date)plainUserProfile.getExperience().clone());
 		userProfile.setBirthday((Date)plainUserProfile.getBirthday().clone());
-		userProfile.setRaiting(plainUserProfile.getRaiting());
+		userProfile.setRating(plainUserProfile.getRating());
 		//userProfile.setComments(plainUserProfile.getComments());
 		userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
 		userProfile.setEmail(plainUserProfile.getEmail());

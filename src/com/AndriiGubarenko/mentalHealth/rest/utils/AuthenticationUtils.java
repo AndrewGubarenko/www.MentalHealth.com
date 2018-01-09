@@ -20,7 +20,7 @@ public class AuthenticationUtils {
 	
 	public <R> ResponseEntity<R> performAfterAuthentication(HttpServletRequest request, Function<Long, ResponseEntity<R>> function) {
 
-		String token = request.getHeader("Authentication");
+		String token = request.getHeader("token");
 
 		if (!tokenManager.verifyToken(token)) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

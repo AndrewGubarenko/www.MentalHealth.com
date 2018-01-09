@@ -1,7 +1,9 @@
-import React from 'react'
-import Raiting from './Raiting'
+import React from 'react';
+import Rating from './Rating';
+import './../css/UserEditor.css';
 
-export default class UserCreate extends React.Component {
+export default class UserEditor extends React.Component {
+
   render(){
     return(
         <div className="CreateFormStyle">
@@ -50,8 +52,8 @@ export default class UserCreate extends React.Component {
           </div>
 
           <div className="FormStyle-block">
-            <label className="form-label">Raiting:</label>
-            <Raiting />
+            <label className="form-label">Rating:</label>
+            <Rating />
           </div>
 
           <div className="FormStyle-block">

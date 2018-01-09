@@ -15,12 +15,14 @@ public class PlainUserProfile {
 	private String essay;
 	
 	private Long price;
+	
+	private String currency;
 
 	private Date experience;
 
 	private Date birthday;
 	
-	private double raiting;
+	private double rating;
 	
 	//private String comments;
 	
@@ -102,15 +104,15 @@ public class PlainUserProfile {
 		this.birthday = birthday;
 	}
 
-	public double getRaiting() {
-		return raiting;
+	public double getRating() {
+		return rating;
 	}
 
-	public void setRaiting(double raiting) {
-		this.raiting = raiting;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 
-	/*
+/*
 	public String getComments() {
 		return comments;
 	}
@@ -173,5 +175,13 @@ public class PlainUserProfile {
 
 	public void setSkype(String skype) {
 		this.skype = skype;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}	
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import './../css/welcomeContent.css';
 
 export default class WelcomeContent extends React.Component {
   render() {

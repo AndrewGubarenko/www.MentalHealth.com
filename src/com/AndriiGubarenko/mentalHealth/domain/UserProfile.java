@@ -40,6 +40,9 @@ public class UserProfile {
 	@Column(name = "PRICE", nullable = false)
 	private Long price;
 	
+	@Column(name = "CURRENCY", nullable = false)
+	private String currency;
+	
 	//Сделать систему подсказок для заполнения
 	@Column(name = "EXPERIENCE")
 	@Temporal(TemporalType.TIME)
@@ -50,8 +53,8 @@ public class UserProfile {
 	private Date birthday;
 	
 	//Сделать систему рейтингов и задание изначального рейтинга новому юзеру
-	@Column(name = "RAITING", nullable = false)
-	private double raiting;
+	@Column(name = "RATING", nullable = false)
+	private double rating;
 /*	
 	//Сделать форму для отзывов
 	@Column(name = "COMMENTS")
@@ -127,12 +130,12 @@ public class UserProfile {
 		this.experience = experience;
 	}
 
-	public double getRaiting() {
-		return raiting;
+	public double getRating() {
+		return rating;
 	}
 
-	public void setRaiting(double raiting) {
-		this.raiting = raiting;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 /*
 	public String getComments() {
@@ -243,5 +246,13 @@ public class UserProfile {
 
 	public void setSkype(String skype) {
 		this.skype = skype;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}	
 }

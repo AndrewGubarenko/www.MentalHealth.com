@@ -25,7 +25,7 @@ export default class AuthenticationContainer extends React.Component {
     }).then(text => {
       console.log(text);
         localStorage.setItem("token", text);
-        this.props.history.push("/userProfile");
+        this.props.history.push("/UserEditor/edit/:id");
     });
   }
 
