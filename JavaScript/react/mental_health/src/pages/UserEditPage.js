@@ -18,7 +18,7 @@ export default class UserEditorPage extends React.Component {
       <UserEditorContainer
         history={this.props.history}
         mode={this.getMode()}
-        id={this.props.match.id}
+        id={this.props.match.params.id}
         />
     );
   }

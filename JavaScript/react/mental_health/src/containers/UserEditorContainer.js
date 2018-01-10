@@ -1,5 +1,4 @@
 import React from 'react';
-import {userService} from './../appContext/Context';
 import UserEditor from './../components/UserEditor';
 import {formatDataUtils, userEditorService} from './../appContext/Context'
 
@@ -26,36 +25,15 @@ export default class UserEditorContainer extends React.Component {
 
   componentDidMount() {
     if(this.props.mode === "edit") {
-      /*userEditorService.get(this.props.id).then((json) => {
-        return json.parse();
-      }).then(data => {
-
-      }); */
-      let userProfile = {
-        "id":this.props.id,
-        "name":"Andrey",
-        "surname":"Hubarenko",
-        "speciality":"ATCO",
-        "essay":"My fucking story",
-        "price":800,
-        "currency":"USD",
-        "experience":1291227642494,
-        "birthday":596226042495,
-        "rating":0.0,
-        "phoneNumber":"+380504121271",
-        "email":"SomeContact@email.com",
-        "linkedin":"LinkedIn.link",
-        "facebook":"Facebook.link",
-        "skype":"MySkypeNickname",
-        "userId":1
-      };
-      setTimeout(() => {
+      userEditorService.get(this.props.id).then((data) => {
+        return data.json();
+      }).then(userProfile => {
         let result = Object.assign({}, userProfile, {
           experience:formatDataUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
           birthday:formatDataUtils.formatToHtmlDateInput(new Date(userProfile.birthday))
         });
         this.setState(result);
-      }, 500);
+      });
     }
   }
 
@@ -117,6 +95,7 @@ export default class UserEditorContainer extends React.Component {
 
   _getFormattedProfileToService() {
     let userProfile = {
+      id: this.props.id,
       name: this.state.name,
       surname: this.state.surname,
       speciality: this.state.speciality,
@@ -143,12 +122,9 @@ export default class UserEditorContainer extends React.Component {
       });
     }
     if(this.props.mode === "edit") {
-      /*userEditorService.update(userProfile).then(() => {
+      userEditorService.update(userProfile).then(() => {
         this.props.history.goBack();
-      });*/
-      setTimeout(() => {
-        this.props.history.goBack();
-      }, 100);
+      });
     }
   }
 

@@ -45,7 +45,7 @@ public class UserProfile {
 	
 	//Сделать систему подсказок для заполнения
 	@Column(name = "EXPERIENCE")
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	private Date experience;
 	
 	@Column(name = "BIRTHDAY")
