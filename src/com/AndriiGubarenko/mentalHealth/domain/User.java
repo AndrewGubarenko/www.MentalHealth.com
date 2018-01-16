@@ -15,16 +15,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "LOGIN", unique = true, nullable = false)
 	private String login;
-	
+
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-	
+
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -56,10 +56,10 @@ public class User {
 	public void addUserProfile(UserProfile userProfile) {
 		addUserProfile(userProfile, false);
 	}
-	
+
 	public void addUserProfile(UserProfile userProfile, boolean otherSideHasBeenAlreadySet) {
 		this.userProfile = userProfile;
-		if(otherSideHasBeenAlreadySet) {
+		if (otherSideHasBeenAlreadySet) {
 			return;
 		}
 		userProfile.setUser(this, true);

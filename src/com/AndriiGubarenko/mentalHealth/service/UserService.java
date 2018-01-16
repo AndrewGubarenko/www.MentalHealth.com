@@ -3,6 +3,7 @@ package com.AndriiGubarenko.mentalHealth.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Component;
 
@@ -36,5 +37,29 @@ public class UserService {
 			return users.size() == 1 ? users.get(0) : null;
 		});
 			
+	}
+	
+	public String remove(Long userId) {
+		return transactionUtils.performInsideTransaction(entityManager -> {
+			validationForRemove(entityManager, userId);
+			authorizationForRemove(entityManager, userId);
+			
+			User user = entityManager.find(User.class, userId);
+			entityManager.remove(user.getUserProfile());
+			entityManager.remove(user);
+			
+			String result = "Your profile was completely removed";
+			return result;
+		});
+	}
+	
+	// TODO: implement this
+	private void validationForRemove(EntityManager entityManager, Long userId) {
+
+	}
+
+	// TODO: implement this
+	private void authorizationForRemove(EntityManager entityManager, Long userId) {
+
 	}
 }

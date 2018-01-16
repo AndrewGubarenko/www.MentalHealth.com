@@ -46,14 +46,14 @@ public class UserProfileService {
 	}
 	
 	// TODO: implement this
-		private void validationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
+	private void validationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 
-		}
+	}
 
-		// TODO: implement this
-		private void authorizationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
+	// TODO: implement this
+	private void authorizationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 
-		}
+	}
 
 	public PlainUserProfile get(Long userId, Long userProfileId) {
 		return transactionUtils.performInsideTransaction(entityManager -> {

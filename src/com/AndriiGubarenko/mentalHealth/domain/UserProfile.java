@@ -82,6 +82,15 @@ public class UserProfile {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
 	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -122,6 +131,14 @@ public class UserProfile {
 		this.price = price;
 	}
 
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 	public Date getExperience() {
 		return experience;
 	}
@@ -151,7 +168,7 @@ public class UserProfile {
 	/*
 	public BufferedImage getUserPhoto() {
 		//сделать правильно путь к файлу
-		String path = "src/UsersPics/photo.jpg";
+		final String path = "src/UsersPics/photo.jpg";
 		try {
 			File file = new File(path);
 			BufferedImage userPhoto = ImageIO.read(file);
@@ -176,14 +193,6 @@ public class UserProfile {
 	}
 	*/
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -192,22 +201,6 @@ public class UserProfile {
 		this.birthday = birthday;
 	}
 	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		setUser(user, false);
-	}
-	
-	public void setUser(User user, boolean otherSideHasBeenAlreadySet) {
-		this.user = user;
-		if(otherSideHasBeenAlreadySet) {
-			return;
-		}
-		user.addUserProfile(this, true);
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -248,11 +241,19 @@ public class UserProfile {
 		this.skype = skype;
 	}
 
-	public String getCurrency() {
-		return currency;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}	
+	public void setUser(User user) {
+		setUser(user, false);
+	}
+	
+	public void setUser(User user, boolean otherSideHasBeenAlreadySet) {
+		this.user = user;
+		if(otherSideHasBeenAlreadySet) {
+			return;
+		}
+		user.addUserProfile(this, true);
+	}
 }
