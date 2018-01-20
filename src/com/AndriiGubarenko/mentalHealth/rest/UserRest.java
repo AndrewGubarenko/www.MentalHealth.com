@@ -63,9 +63,9 @@ public class UserRest {
 
 	//TODO: verify this
 	@RequestMapping(path = "/userProfile/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<User> remove(HttpServletRequest request, @PathVariable Long id) {
+	public ResponseEntity<String> remove(HttpServletRequest request, @PathVariable Long id) {
 		return authenticationUtils.performAfterAuthentication(request, userId -> {
-			User result = userService.remove(userId);
+			String result = userService.remove(userId);
 			return new ResponseEntity<>(result, HttpStatus.OK);
 		});
 	}

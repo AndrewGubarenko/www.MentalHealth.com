@@ -39,6 +39,7 @@ public class UserService {
 			
 	}
 	
+	//TODO: implement correct return statement
 	public String remove(Long userId) {
 		return transactionUtils.performInsideTransaction(entityManager -> {
 			validationForRemove(entityManager, userId);

@@ -1,8 +1,10 @@
-import React from 'react'
-import {userService} from './../appContext/Context'
-import Authentication from './../components/Authentication'
+import React from 'react';
+import {userService} from './../appContext/Context';
+import Authentication from './../components/Authentication';
+import {setIsAuthenticated} from './../store/user/UserActions';
+import {connect} from 'react-redux';
 
-export default class AuthenticationContainer extends React.Component {
+class AuthenticationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +27,9 @@ export default class AuthenticationContainer extends React.Component {
     }).then(text => {
       console.log(text);
         localStorage.setItem("token", text);
-        this.props.history.push("/UserEditor/edit/:id");
+        this.props.dispatch(setIsAuthenticated(true));
+        //Clarify about id or put the User name to path
+        this.props.history.push("/UserEditor/edit/");
     });
   }
 
@@ -38,6 +42,15 @@ export default class AuthenticationContainer extends React.Component {
         onChangePassword={this.onChangePassword}
         onClickEnter={this.onClickEnter}
         />
-    )
+    );
   }
 }
+
+const mapStateToProps = (state) => {
+  let props = {
+    isAuthenticated: state.server.user.isAuthenticated
+  };
+  return props;
+};
+
+export default connect(mapStateToProps)(AuthenticationContainer);

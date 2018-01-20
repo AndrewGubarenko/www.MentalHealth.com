@@ -18,7 +18,7 @@
 
 #list{
   width: 170px;
-  height: 145px;
+  height: auto;
   left: 0;
   background-color: white;
   border-radius: 10px;
@@ -34,7 +34,13 @@
   border: 1px solid white;
 }
 #list ul li:hover {
-  border: 1px solid skyblue;
+  color: skyblue;
+  transition: 0.25s;
+}
+
+#list ul li span:hover {
+  color: skyblue;
+  transition: 0.25s;
 }
 
  #list ul li a{
