@@ -1,7 +1,13 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -82,7 +88,6 @@ public class UserProfile {
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -165,10 +170,11 @@ public class UserProfile {
 */
 
 
-	/*
+	
 	public BufferedImage getUserPhoto() {
-		//сделать правильно путь к файлу
-		final String path = "src/UsersPics/photo.jpg";
+		String path = "src/UsersPics/photo.jpg";
+		//String path = "src/UsersPics/" + user.getLogin() + "/" + user.getLogin() + ".jpg";
+		
 		try {
 			File file = new File(path);
 			BufferedImage userPhoto = ImageIO.read(file);
@@ -183,15 +189,15 @@ public class UserProfile {
 	}
 
 	public void setUserPhoto(RenderedImage userPhoto) {
+		String path = "src/UsersPics/" + user.getLogin() + "/" + user.getLogin() + ".jpg";
 		try {
-			String path = "src/UsersPics/photo.jpg";
 			File file = new File(path);
 			ImageIO.write(userPhoto, "jpg", file);
 		} catch(IOException ex) {
 			ex.getMessage();
 		}
 	}
-	*/
+	
 
 	public Date getBirthday() {
 		return birthday;

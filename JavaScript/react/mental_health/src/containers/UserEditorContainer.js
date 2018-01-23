@@ -1,6 +1,6 @@
 import React from 'react';
 import UserEditor from './../components/UserEditor';
-import {formatDataUtils, userEditorService} from './../appContext/Context'
+import {formatDateUtils, userEditorService, imageUploader} from './../appContext/Context'
 
 export default class UserEditorContainer extends React.Component {
   constructor(props) {
@@ -12,25 +12,29 @@ export default class UserEditorContainer extends React.Component {
       essay: "",
       price: 100,
       currency: "UAH",
-      experience: formatDataUtils.formatToHtmlDateInput(new Date()),
-      birthday: formatDataUtils.formatToHtmlDateInput(new Date()),
+      experience: formatDateUtils.formatToHtmlDateInput(new Date()),
+      birthday: formatDateUtils.formatToHtmlDateInput(new Date()),
       rating: 0.0,
       phoneNumber: "",
       email: "",
       linkedin: "",
       facebook: "",
-      skype: ""
+      skype: "",
+      userPhotoSrc: "./images/instead-user-photo.jpg"
     };
   }
 
+
+
   componentDidMount() {
+    document.getElementById('userPhoto').setAttribute('src', this.state.userPhotoSrc);
     if(this.props.mode === "edit") {
       userEditorService.get(this.props.id).then((data) => {
         return data.json();
       }).then(userProfile => {
         let result = Object.assign({}, userProfile, {
-          experience:formatDataUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
-          birthday:formatDataUtils.formatToHtmlDateInput(new Date(userProfile.birthday))
+          experience:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
+          birthday:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.birthday))
         });
         this.setState(result);
       });
@@ -89,8 +93,10 @@ export default class UserEditorContainer extends React.Component {
     this.setState({skype: event.target.value});
   }
 
-  onClickUpload = () => {
-
+  onChangeUserPhoto = (event) => {
+    imageUploader.imageUpload(event)
+    //TODO: implement saving photo to correct path
+    this.setState({userPhotoSrc: event.target.value})
   }
 
   _getFormattedProfileToService() {
@@ -103,13 +109,14 @@ export default class UserEditorContainer extends React.Component {
       price: this.state.price,
       currency: this.state.currency,
       rating: this.state.rating,
-      experience: formatDataUtils.formatToDate(this.state.experience),
-      birthday: formatDataUtils.formatToDate(this.state.birthday),
+      experience: formatDateUtils.formatToDate(this.state.experience),
+      birthday: formatDateUtils.formatToDate(this.state.birthday),
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       linkedin: this.state.linkedin,
       facebook: this.state.facebook,
-      skype: this.state.skype
+      skype: this.state.skype,
+      userPhotoSrc: this.state.userPhotoSrc
     };
     return userProfile;
   }
@@ -157,7 +164,8 @@ export default class UserEditorContainer extends React.Component {
         onChangeFacebook={this.onChangeFacebook}
         skype={this.state.skype}
         onChangeSkype={this.onChangeSkype}
-        onClickUpload={this.onClickUpload}
+        userPhotoSrc={this.state.userPhotoSrc}
+        onChangeUserPhoto={this.onChangeUserPhoto}
         onClickSave={this.onClickSave}
         />
     );

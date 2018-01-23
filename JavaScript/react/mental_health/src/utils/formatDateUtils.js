@@ -1,4 +1,4 @@
-export default class FormatDataUtils {
+export default class FormatDateUtils {
   formatToHtmlDateInput(date) {
     let year = date.getFullYear();
     let monthIndex = date.getMonth()

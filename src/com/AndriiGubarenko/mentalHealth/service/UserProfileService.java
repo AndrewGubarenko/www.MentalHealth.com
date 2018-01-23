@@ -32,14 +32,14 @@ public class UserProfileService {
 			userProfile.setCurrency(plainUserProfile.getCurrency());
 			userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
 			userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
-			//userProfile.setRating(plainUserProfile.getRating());
-			// userProfile.setComments(plainUserProfile.getComments());
+			userProfile.setRating(plainUserProfile.getRating());
+			//userProfile.setComments(plainUserProfile.getComments());
 			userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
 			userProfile.setEmail(plainUserProfile.getEmail());
 			userProfile.setLinkedin(plainUserProfile.getLinkedin());
 			userProfile.setFacebook(plainUserProfile.getFacebook());
 			userProfile.setSkype(plainUserProfile.getSkype());
-			// userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
+			//userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 			
 			return Converter.toPlainUserProfile(userProfile);
 		});
@@ -113,7 +113,7 @@ public class UserProfileService {
 		userProfile.setLinkedin(plainUserProfile.getLinkedin());
 		userProfile.setFacebook(plainUserProfile.getFacebook());
 		userProfile.setSkype(plainUserProfile.getSkype());
-		// userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
+		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 
 		User user = entityManager.find(User.class, userId);
 		userProfile.setUser(user);

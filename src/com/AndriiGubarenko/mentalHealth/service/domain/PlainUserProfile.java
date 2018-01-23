@@ -1,5 +1,6 @@
 package com.AndriiGubarenko.mentalHealth.service.domain;
 
+import java.awt.image.BufferedImage;
 import java.util.Date;
 
 public class PlainUserProfile {
@@ -36,7 +37,7 @@ public class PlainUserProfile {
 	
 	private String skype;
 	
-	//private BufferedImage userPhoto;
+	private BufferedImage userPhoto;
 	
 	private Long userId;
 
@@ -136,7 +137,9 @@ public class PlainUserProfile {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-/*
+
+	//----------------------------------------------------------
+	
 	public BufferedImage getUserPhoto() {
 		return userPhoto;
 	}
@@ -144,7 +147,9 @@ public class PlainUserProfile {
 	public void setUserPhoto(BufferedImage bufferedImage) {
 		this.userPhoto = bufferedImage;
 	}
-*/
+
+	//----------------------------------------------------------
+	
 	public Long getUserId() {
 		return userId;
 	}

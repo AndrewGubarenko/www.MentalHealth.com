@@ -23,7 +23,7 @@
   font-size: 18px;
 }
 
-#photo {
+#photoContainer {
   background: #DCDCDC;
   width: 200px;
   height: 250px;
@@ -31,6 +31,66 @@
   float: bottom;
   border: 1px solid grey;
   border-radius: 20px;
+}
+
+#userPhoto {
+  position: relative;
+  width: 200px;
+  height: 250px;
+	border-radius: 20px;
+}
+/*	=	File Load */
+/* Стили для контейнера */
+.file-load-button {
+  margin: 30px auto 50px 450px;
+	width: 310px;
+	height: 45px;
+	overflow: hidden;
+	position: relative;
+}
+/* работаем с инпутом который конкретно file */
+#inputImage{
+	/* делаем кроссбраузерную прозрачность */
+	opacity: 0;
+	filter: alpha(opacity=0);
+
+	/* Позиционируем абсолютно отсносительно контейнера по правому краю */
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	/*
+	Задаем высоту и делаем шрифт огромным
+	для того чтобы кнопка "обзор" занимала все пространство контейнера
+	*/
+	height: 40px;
+	font-size: 300px;
+
+	/* Ставим наш инпут поверх всего содержимого */
+	z-index: 2;
+	cursor: pointer;
+	width: auto;
+}
+
+#uploadButton {
+	position: absolute;
+	font-family: sans-serif;
+  outline: none;
+  float: bottom;
+  border-radius: 5px;
+  width: 110px;
+  height: 40px;
+}
+
+#inputImage:hover ~ #uploadButton {
+	box-shadow: 0 0 2px #696969;
+}
+
+#inputImage:active ~ #uploadButton {
+	box-shadow: 0 1px 0 rgba(105, 105, 105, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1)
+	inset;box-shadow:0 1px 0 rgba(105, 105, 105, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1)
+	inset;
+	transform: translatey(1px);
 }
 
 #price-form-control {
@@ -48,4 +108,10 @@
   width: 85px;
   padding: 2px;
   font-size: 18px;
+}
+
+#imageSelect {
+  float: bottom;
+  margin: 15px auto 45px 210px;
+  width: 350px;
 }

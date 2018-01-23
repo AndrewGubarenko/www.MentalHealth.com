@@ -24,7 +24,7 @@ public class Converter {
 		plainUserProfile.setFacebook(userProfile.getFacebook());
 		plainUserProfile.setSkype(userProfile.getSkype());
 		plainUserProfile.setUserId(userProfile.getUser().getId());
-		// plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
+		plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
 
 		return plainUserProfile;
 	}
