@@ -1,13 +1,7 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +15,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 //Сделать ссылку по логину юзера для отобрадения
-@Table(name = "USERPROFILE")
+@Table(name = "USER_PROFILE")
 public class UserProfile {
 	
 	@Id
@@ -40,7 +34,7 @@ public class UserProfile {
 	private String speciality;
 	
 	//Сделать систему подсказок для заполнения
-	@Column(name = "ESSAY")
+	@Column(name = "ESSAY", columnDefinition="TEXT")
 	private String essay;
 	
 	@Column(name = "PRICE", nullable = false)
@@ -49,7 +43,6 @@ public class UserProfile {
 	@Column(name = "CURRENCY", nullable = false)
 	private String currency;
 	
-	//Сделать систему подсказок для заполнения
 	@Column(name = "EXPERIENCE")
 	@Temporal(TemporalType.DATE)
 	private Date experience;
@@ -67,7 +60,7 @@ public class UserProfile {
 	private String comments;
 */	
 
-	@Column(name = "PHONENUMBER")
+	@Column(name = "PHONE_NUMBER")
 	private String phoneNumber;
 	
 	@Column(name = "EMAIL", nullable = false)
@@ -82,7 +75,8 @@ public class UserProfile {
 	@Column(name = "SKYPE")
 	private String skype;
 	
-	//private File userPhoto;
+	@Column(name = "USER_PHOTO", columnDefinition="TEXT")
+	private String userPhotoSrc;
 	
 	@OneToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
@@ -168,36 +162,16 @@ public class UserProfile {
 		this.comments = comments;
 	}
 */
-
-
 	
-	public BufferedImage getUserPhoto() {
-		String path = "src/UsersPics/photo.jpg";
-		//String path = "src/UsersPics/" + user.getLogin() + "/" + user.getLogin() + ".jpg";
-		
-		try {
-			File file = new File(path);
-			BufferedImage userPhoto = ImageIO.read(file);
-			return userPhoto;
-		} catch (FileNotFoundException ex) {
-			ex.getMessage();
-			return null;
-		} catch (IOException ex) {
-			ex.getMessage();
-			return null;
-		}
+//------------------------------------------------------
+	public String getUserPhotoSrc() {
+		return userPhotoSrc;
 	}
 
-	public void setUserPhoto(RenderedImage userPhoto) {
-		String path = "src/UsersPics/" + user.getLogin() + "/" + user.getLogin() + ".jpg";
-		try {
-			File file = new File(path);
-			ImageIO.write(userPhoto, "jpg", file);
-		} catch(IOException ex) {
-			ex.getMessage();
-		}
+	public void setUserPhotoSrc(String userPhotoSrc) {
+		this.userPhotoSrc = userPhotoSrc;
 	}
-	
+//------------------------------------------------------
 
 	public Date getBirthday() {
 		return birthday;

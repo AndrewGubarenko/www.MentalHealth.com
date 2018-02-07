@@ -24,7 +24,17 @@ public class Converter {
 		plainUserProfile.setFacebook(userProfile.getFacebook());
 		plainUserProfile.setSkype(userProfile.getSkype());
 		plainUserProfile.setUserId(userProfile.getUser().getId());
-		plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
+		
+		plainUserProfile.setUserPhotoSrc(userProfile.getUserPhotoSrc());
+		
+		/*Blob blob = userProfile.getUserPhotoSrc();
+        try {
+			byte[] blobBytes = blob.getBytes(1, (int) blob.length());
+			plainUserProfile.setUserPhotoSrc(blobBytes);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 
 		return plainUserProfile;
 	}

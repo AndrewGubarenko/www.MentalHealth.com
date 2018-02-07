@@ -31,6 +31,8 @@
   float: bottom;
   border: 1px solid grey;
   border-radius: 20px;
+  background-image: url(../icons/instead-user-photo.jpg);
+  background-size: 200px 250px;
 }
 
 #userPhoto {

@@ -17,13 +17,14 @@ import com.AndriiGubarenko.mentalHealth.service.utils.TransactionUtils;
 public class UserProfileService {
 	@Resource(name = "transactionUtils")
 	private TransactionUtils transactionUtils;
-	
+
 	public PlainUserProfile update(Long userId, PlainUserProfile plainUserProfile) {
 		return transactionUtils.performInsideTransaction(entityManager -> {
 			validationForUpdate(entityManager, userId, plainUserProfile);
 			authorizationForUpdate(entityManager, userId, plainUserProfile);
-			
+
 			UserProfile userProfile = entityManager.find(UserProfile.class, plainUserProfile.getId());
+
 			userProfile.setName(plainUserProfile.getName());
 			userProfile.setSurname(plainUserProfile.getSurname());
 			userProfile.setSpeciality(plainUserProfile.getSpeciality());
@@ -33,18 +34,24 @@ public class UserProfileService {
 			userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
 			userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
 			userProfile.setRating(plainUserProfile.getRating());
-			//userProfile.setComments(plainUserProfile.getComments());
+			// userProfile.setComments(plainUserProfile.getComments());
 			userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
 			userProfile.setEmail(plainUserProfile.getEmail());
 			userProfile.setLinkedin(plainUserProfile.getLinkedin());
 			userProfile.setFacebook(plainUserProfile.getFacebook());
 			userProfile.setSkype(plainUserProfile.getSkype());
-			//userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 			
+			userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
+			
+			// ------------
+			/*Blob blob = plainUserProfile.getUserPhotoSrc();
+			userProfile.setUserPhotoSrc(blob);*/
+			// ------------
+
 			return Converter.toPlainUserProfile(userProfile);
 		});
 	}
-	
+
 	// TODO: implement this
 	private void validationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 
@@ -60,16 +67,16 @@ public class UserProfileService {
 			return get(entityManager, userId, userProfileId);
 		});
 	}
-	
+
 	private PlainUserProfile get(EntityManager entityManager, Long userId, Long userProfileId) {
 		validationForGet(entityManager, userId, userProfileId);
 		authorizationForGet(entityManager, userId, userProfileId);
-		
+
 		UserProfile userProfile = entityManager.find(UserProfile.class, userProfileId);
-		
+
 		return Converter.toPlainUserProfile(userProfile);
 	}
-	
+
 	// TODO: implement this
 	private void validationForGet(EntityManager entityManager, Long userId, Long userProfileId) {
 
@@ -88,11 +95,11 @@ public class UserProfileService {
 			return result;
 		});
 	}
-	
-	// TODO: implement this
-		private void validationForCreate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 
-		}
+	// TODO: implement this
+	private void validationForCreate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
+
+	}
 
 	private UserProfile create(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 		UserProfile userProfile = new UserProfile();
@@ -113,13 +120,20 @@ public class UserProfileService {
 		userProfile.setLinkedin(plainUserProfile.getLinkedin());
 		userProfile.setFacebook(plainUserProfile.getFacebook());
 		userProfile.setSkype(plainUserProfile.getSkype());
-		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
-
+		
+		userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
+		
+		// ------------
+		/*Blob blob = plainUserProfile.getUserPhotoSrc();
+		userProfile.setUserPhotoSrc(blob);*/
+		// ------------
+		
 		User user = entityManager.find(User.class, userId);
 		userProfile.setUser(user);
-
+		
 		entityManager.persist(userProfile);
 
 		return userProfile;
 	}
+
 }

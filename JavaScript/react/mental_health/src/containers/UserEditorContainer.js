@@ -20,14 +20,12 @@ export default class UserEditorContainer extends React.Component {
       linkedin: "",
       facebook: "",
       skype: "",
-      userPhotoSrc: "./images/instead-user-photo.jpg"
+      userPhotoSrc: ""
     };
   }
 
 
-
   componentDidMount() {
-    document.getElementById('userPhoto').setAttribute('src', this.state.userPhotoSrc);
     if(this.props.mode === "edit") {
       userEditorService.get(this.props.id).then((data) => {
         return data.json();
@@ -93,10 +91,13 @@ export default class UserEditorContainer extends React.Component {
     this.setState({skype: event.target.value});
   }
 
+//TODO: implement normal saving photo method
   onChangeUserPhoto = (event) => {
-    imageUploader.imageUpload(event)
-    //TODO: implement saving photo to correct path
-    this.setState({userPhotoSrc: event.target.value})
+    let image = document.querySelector("#userPhoto");
+    imageUploader.imageUpload(event, image).then((result) => {
+      this.setState({userPhotoSrc: result});
+      console.log(this.state.userPhotoSrc);
+    });
   }
 
   _getFormattedProfileToService() {

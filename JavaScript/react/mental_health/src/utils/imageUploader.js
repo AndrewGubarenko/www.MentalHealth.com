@@ -1,22 +1,36 @@
+import blobUtil from 'blob-util';
+
 export default class ImageUploader {
-  imageUpload(event) {
-    let files = event.target.files; // FileList object
-    // Loop through the FileList and render image files
-    for (let i = 0, selectedImage; selectedImage = files[i]; i++) {
-        // Only process image files.
-        if (!selectedImage.type.match('image.*')) {
-        	continue;
-        }
-        let reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function(theFile) {
-        	return function(e) {
-          		// Render image
-				document.getElementById('userPhoto').setAttribute('src', e.target.result);
-        	};
-        })(selectedImage);
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(selectedImage);
+
+  async imageUpload (event, image) {
+
+    let sleep = (ms) => {
+      return new Promise(resolve => setTimeout(resolve, ms));
     }
+    
+    let selectedImage = event.target.files[0];
+    let reader = new FileReader();
+    let globalBase64String = "start value";
+
+    reader.onload = (event) => {
+
+      blobUtil.imgSrcToBlob(event.target.result, 'image/jpeg').then((blob) => {
+        let blobURL = blobUtil.createObjectURL(blob);
+        image.src = blobURL;
+
+        blobUtil.blobToBase64String(blob).then((base64String) => {
+          globalBase64String = base64String;
+
+        }).catch((err) => {
+          alert("Error occurred with binaryString: " + err);
+        });
+
+      }).catch((err) => {
+        alert("Error occurred with blob: " + err);
+      });
+    }
+    reader.readAsDataURL(selectedImage);
+    await sleep(250);
+    return globalBase64String;
   }
 }

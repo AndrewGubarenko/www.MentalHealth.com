@@ -10,10 +10,10 @@ export default class UserEditor extends React.Component {
 
           <div>
             <div id="photoContainer">
-              <img id="userPhoto" src="" alt="" />
+              <img id="userPhoto" alt="" onChange={this.props.onChangeUserPhoto} />
             </div>
             <div className="file-load-button">
-            	<input type="file" id="inputImage" onChange={this.props.onChangeUserPhoto} value={this.props.name}/>
+            	<input type="file" id="inputImage" onChange={this.props.onChangeUserPhoto} />
             	<button id="uploadButton">Upload</button>
             </div>
           </div>
