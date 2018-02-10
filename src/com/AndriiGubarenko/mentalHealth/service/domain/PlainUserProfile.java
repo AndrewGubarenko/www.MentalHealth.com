@@ -2,6 +2,8 @@ package com.AndriiGubarenko.mentalHealth.service.domain;
 
 import java.util.Date;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class PlainUserProfile {
 
 	private Long id;
@@ -143,8 +145,8 @@ public class PlainUserProfile {
 		return userPhotoSrc;
 	}
 
-	public void setUserPhotoSrc(String userPhotoSrc) {
-		this.userPhotoSrc = userPhotoSrc;
+	public void setUserPhotoSrc(byte[] userPhotoSrc) {
+		this.userPhotoSrc = Base64.encodeBase64String(userPhotoSrc);
 	}
 
 	//----------------------------------------------------------

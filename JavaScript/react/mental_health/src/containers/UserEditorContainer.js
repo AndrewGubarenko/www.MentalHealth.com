@@ -30,6 +30,9 @@ export default class UserEditorContainer extends React.Component {
       userEditorService.get(this.props.id).then((data) => {
         return data.json();
       }).then(userProfile => {
+        let image = document.querySelector("#userPhoto");
+        imageUploader.imageMount(userProfile.userPhotoSrc, image);
+
         let result = Object.assign({}, userProfile, {
           experience:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
           birthday:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.birthday))
@@ -91,14 +94,12 @@ export default class UserEditorContainer extends React.Component {
     this.setState({skype: event.target.value});
   }
 
-//TODO: implement normal saving photo method
   onChangeUserPhoto = (event) => {
     let image = document.querySelector("#userPhoto");
     imageUploader.imageUpload(event, image).then((result) => {
       this.setState({userPhotoSrc: result});
-      console.log(this.state.userPhotoSrc);
     });
-  }
+}
 
   _getFormattedProfileToService() {
     let userProfile = {

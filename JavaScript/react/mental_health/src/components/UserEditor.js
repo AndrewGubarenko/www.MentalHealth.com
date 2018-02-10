@@ -10,14 +10,13 @@ export default class UserEditor extends React.Component {
 
           <div>
             <div id="photoContainer">
-              <img id="userPhoto" alt="" onChange={this.props.onChangeUserPhoto} />
+              <img id="userPhoto" alt="" />
             </div>
             <div className="file-load-button">
             	<input type="file" id="inputImage" onChange={this.props.onChangeUserPhoto} />
             	<button id="uploadButton">Upload</button>
             </div>
           </div>
-
 
           <div className="FormStyle-block">
             <label className="form-label">Name:</label>

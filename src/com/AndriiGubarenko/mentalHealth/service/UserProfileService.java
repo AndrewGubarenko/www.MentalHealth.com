@@ -42,11 +42,6 @@ public class UserProfileService {
 			userProfile.setSkype(plainUserProfile.getSkype());
 			
 			userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
-			
-			// ------------
-			/*Blob blob = plainUserProfile.getUserPhotoSrc();
-			userProfile.setUserPhotoSrc(blob);*/
-			// ------------
 
 			return Converter.toPlainUserProfile(userProfile);
 		});
@@ -122,11 +117,6 @@ public class UserProfileService {
 		userProfile.setSkype(plainUserProfile.getSkype());
 		
 		userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
-		
-		// ------------
-		/*Blob blob = plainUserProfile.getUserPhotoSrc();
-		userProfile.setUserPhotoSrc(blob);*/
-		// ------------
 		
 		User user = entityManager.find(User.class, userId);
 		userProfile.setUser(user);

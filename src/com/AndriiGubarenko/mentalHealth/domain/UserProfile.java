@@ -8,13 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 @Entity
-//Сделать ссылку по логину юзера для отобрадения
 @Table(name = "USER_PROFILE")
 public class UserProfile {
 	
@@ -29,11 +31,9 @@ public class UserProfile {
 	@Column(name = "SURNAME", nullable = false)
 	private String surname;
 	
-	//Сделать систему подсказок для заполнения
 	@Column(name = "SPECIALITY", nullable = false)
 	private String speciality;
 	
-	//Сделать систему подсказок для заполнения
 	@Column(name = "ESSAY", columnDefinition="TEXT")
 	private String essay;
 	
@@ -51,7 +51,6 @@ public class UserProfile {
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 	
-	//Сделать систему рейтингов и задание изначального рейтинга новому юзеру
 	@Column(name = "RATING", nullable = false)
 	private double rating;
 /*	
@@ -75,8 +74,9 @@ public class UserProfile {
 	@Column(name = "SKYPE")
 	private String skype;
 	
-	@Column(name = "USER_PHOTO", columnDefinition="TEXT")
-	private String userPhotoSrc;
+	@Column(name = "USER_PHOTO")
+	@Lob
+	private byte[] userPhotoSrc;
 	
 	@OneToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
@@ -164,13 +164,17 @@ public class UserProfile {
 */
 	
 //------------------------------------------------------
-	public String getUserPhotoSrc() {
+	public byte[] getUserPhotoSrc() {
 		return userPhotoSrc;
 	}
 
 	public void setUserPhotoSrc(String userPhotoSrc) {
-		this.userPhotoSrc = userPhotoSrc;
-	}
+		try {
+			this.userPhotoSrc = Base64.decodeBase64(userPhotoSrc);
+		} catch (IllegalArgumentException ex) {
+			ex.printStackTrace();
+		}
+ 	}
 //------------------------------------------------------
 
 	public Date getBirthday() {
