@@ -1,46 +1,31 @@
 package com.AndriiGubarenko.mentalHealth.service.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class PlainUserProfile {
 
 	private Long id;
-
 	private String name;
-	
 	private String surname;
-
 	private String speciality;
-
 	private String essay;
-	
 	private Long price;
-	
 	private String currency;
-
 	private Date experience;
-
 	private Date birthday;
-	
-	private double rating;
-	
-	//private String comments;
-	
 	private String phoneNumber;
-	
 	private String email;
-	
 	private String linkedin;
-
 	private String facebook;
-	
 	private String skype;
-	
-	private String userPhotoSrc;
-	
+	private String userPhoto;
+	private String userDiploma;
 	private Long userId;
+	private Set<Long> commentIds = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -106,23 +91,6 @@ public class PlainUserProfile {
 		this.birthday = birthday;
 	}
 
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-
-/*
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-*/
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -141,12 +109,20 @@ public class PlainUserProfile {
 
 	//----------------------------------------------------------
 	
-	public String getUserPhotoSrc() {
-		return userPhotoSrc;
+	public String getUserPhoto() {
+		return userPhoto;
 	}
 
-	public void setUserPhotoSrc(byte[] userPhotoSrc) {
-		this.userPhotoSrc = Base64.encodeBase64String(userPhotoSrc);
+	public void setUserPhoto(byte[] userPhoto) {
+		this.userPhoto = Base64.encodeBase64String(userPhoto);
+	}
+	
+	public String getUserDiploma() {
+		return userDiploma;
+	}
+
+	public void setUserDiploma(byte[] userDiploma) {
+		this.userDiploma = Base64.encodeBase64String(userDiploma);
 	}
 
 	//----------------------------------------------------------
@@ -189,5 +165,13 @@ public class PlainUserProfile {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public Set<Long> getComment() {
+		return commentIds;
+	}
+
+	public void setComment(Set<Long> commentIds) {
+		this.commentIds = commentIds;
 	}	
 }

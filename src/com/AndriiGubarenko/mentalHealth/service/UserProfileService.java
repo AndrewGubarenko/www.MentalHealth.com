@@ -33,15 +33,14 @@ public class UserProfileService {
 			userProfile.setCurrency(plainUserProfile.getCurrency());
 			userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
 			userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
-			userProfile.setRating(plainUserProfile.getRating());
-			// userProfile.setComments(plainUserProfile.getComments());
 			userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
 			userProfile.setEmail(plainUserProfile.getEmail());
 			userProfile.setLinkedin(plainUserProfile.getLinkedin());
 			userProfile.setFacebook(plainUserProfile.getFacebook());
 			userProfile.setSkype(plainUserProfile.getSkype());
 			
-			userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
+			userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
+			userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
 
 			return Converter.toPlainUserProfile(userProfile);
 		});
@@ -99,7 +98,6 @@ public class UserProfileService {
 	private UserProfile create(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 		UserProfile userProfile = new UserProfile();
 
-		userProfile.setId(plainUserProfile.getId());
 		userProfile.setName(plainUserProfile.getName());
 		userProfile.setSurname(plainUserProfile.getSurname());
 		userProfile.setSpeciality(plainUserProfile.getSpeciality());
@@ -108,15 +106,14 @@ public class UserProfileService {
 		userProfile.setCurrency(plainUserProfile.getCurrency());
 		userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
 		userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
-		userProfile.setRating(plainUserProfile.getRating());
-		// userProfile.setComments(plainUserProfile.getComments());
 		userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
 		userProfile.setEmail(plainUserProfile.getEmail());
 		userProfile.setLinkedin(plainUserProfile.getLinkedin());
 		userProfile.setFacebook(plainUserProfile.getFacebook());
 		userProfile.setSkype(plainUserProfile.getSkype());
 		
-		userProfile.setUserPhotoSrc(plainUserProfile.getUserPhotoSrc());
+		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
+		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
 		
 		User user = entityManager.find(User.class, userId);
 		userProfile.setUser(user);

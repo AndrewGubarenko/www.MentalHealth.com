@@ -20,7 +20,8 @@ export default class UserEditorContainer extends React.Component {
       linkedin: "",
       facebook: "",
       skype: "",
-      userPhotoSrc: ""
+      userPhoto: "",
+      userDiploma: ""
     };
   }
 
@@ -30,8 +31,9 @@ export default class UserEditorContainer extends React.Component {
       userEditorService.get(this.props.id).then((data) => {
         return data.json();
       }).then(userProfile => {
+
         let image = document.querySelector("#userPhoto");
-        imageUploader.imageMount(userProfile.userPhotoSrc, image);
+        imageUploader.imageMount(userProfile.userPhoto, image);
 
         let result = Object.assign({}, userProfile, {
           experience:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
@@ -97,7 +99,7 @@ export default class UserEditorContainer extends React.Component {
   onChangeUserPhoto = (event) => {
     let image = document.querySelector("#userPhoto");
     imageUploader.imageUpload(event, image).then((result) => {
-      this.setState({userPhotoSrc: result});
+      this.setState({userPhoto: result});
     });
 }
 
@@ -110,7 +112,6 @@ export default class UserEditorContainer extends React.Component {
       essay: this.state.essay,
       price: this.state.price,
       currency: this.state.currency,
-      rating: this.state.rating,
       experience: formatDateUtils.formatToDate(this.state.experience),
       birthday: formatDateUtils.formatToDate(this.state.birthday),
       phoneNumber: this.state.phoneNumber,
@@ -118,7 +119,8 @@ export default class UserEditorContainer extends React.Component {
       linkedin: this.state.linkedin,
       facebook: this.state.facebook,
       skype: this.state.skype,
-      userPhotoSrc: this.state.userPhotoSrc
+      userPhoto: this.state.userPhoto,
+      userDiploma: this.state.userDiploma
     };
     return userProfile;
   }
@@ -166,7 +168,7 @@ export default class UserEditorContainer extends React.Component {
         onChangeFacebook={this.onChangeFacebook}
         skype={this.state.skype}
         onChangeSkype={this.onChangeSkype}
-        userPhotoSrc={this.state.userPhotoSrc}
+        userPhoto={this.state.userPhoto}
         onChangeUserPhoto={this.onChangeUserPhoto}
         onClickSave={this.onClickSave}
         />

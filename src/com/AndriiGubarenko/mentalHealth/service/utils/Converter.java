@@ -1,6 +1,8 @@
 package com.AndriiGubarenko.mentalHealth.service.utils;
 
+import com.AndriiGubarenko.mentalHealth.domain.Comment;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
+import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 
 public class Converter {
@@ -16,8 +18,6 @@ public class Converter {
 		plainUserProfile.setCurrency(userProfile.getCurrency());
 		plainUserProfile.setExperience(userProfile.getExperience());
 		plainUserProfile.setBirthday(userProfile.getBirthday());
-		plainUserProfile.setRating(userProfile.getRating());
-		// plainUserProfile.setComments(userProfile.getComments());
 		plainUserProfile.setPhoneNumber(userProfile.getPhoneNumber());
 		plainUserProfile.setEmail(userProfile.getEmail());
 		plainUserProfile.setLinkedin(userProfile.getLinkedin());
@@ -25,8 +25,20 @@ public class Converter {
 		plainUserProfile.setSkype(userProfile.getSkype());
 		plainUserProfile.setUserId(userProfile.getUser().getId());
 		
-		plainUserProfile.setUserPhotoSrc(userProfile.getUserPhotoSrc());
+		plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
+		plainUserProfile.setUserDiploma(userProfile.getUserDiploma());
 
 		return plainUserProfile;
+	}
+	
+	public static PlainComment toPlainComment(Comment comment) {
+		PlainComment plainComment = new PlainComment();
+		
+		plainComment.setId(comment.getId());
+		plainComment.setVisitorName(comment.getVisitorName());
+		plainComment.setCommentText(comment.getCommentText());
+		plainComment.setRating(comment.getRating());
+		
+		return plainComment;
 	}
 }

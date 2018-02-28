@@ -4,6 +4,8 @@ import WelcomeContent from './components/WelcomeContent';
 import RegistrationContainer from './containers/RegistrationContainer';
 import AuthenticationContainer from './containers/AuthenticationContainer';
 import UserEditorPage from './pages/UserEditPage';
+import UserViewPage from './pages/UserViewPage';
+import MainPage from './pages/MainPage';
 import Footer from './components/Footer';
 import './css/FormStyle.css';
 
@@ -40,6 +42,9 @@ class App extends React.Component {
             <Route exact path="/" component={WelcomeContent} />
             <Route exact path="/registration" component={RegistrationContainer} />
             <Route exact path="/authentication" component={AuthenticationContainer} />
+
+            <Route exact path="/UserViewPage" component={UserViewPage} />
+            <Route exact path="/MainPage" component={MainPage} />
 
             <Route exact path="/UserEditor/new/" component={UserEditorPage} />
             <Route exact path="/UserEditor/edit/:id" component={UserEditorPage} />

@@ -29,7 +29,7 @@ class AuthenticationContainer extends React.Component {
         localStorage.setItem("token", text);
         this.props.dispatch(setIsAuthenticated(true));
         //Clarify about id or put the User name to path
-        this.props.history.push("/UserEditor/edit/");
+        this.props.history.push("/UserEditor/edit/id");
     });
   }
 

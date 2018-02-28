@@ -1,5 +1,10 @@
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+  background-color: #e7e5e9;
+/*  background-image: url(../icons/dot12_small.png);*/
 }

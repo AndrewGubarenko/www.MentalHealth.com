@@ -1,0 +1,385 @@
+/*===============HEADER================================*/
+#userContainer {
+  margin: 30px 0 30px 10%;
+  width: 80%;
+  border: 1px solid red;
+  overflow: hidden;
+}
+
+#userData {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid blue;
+}
+
+#person_container {
+  border: 1px solid yellowgreen;
+  margin-bottom: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 400px;
+  background-color: white;
+}
+
+#cover {
+  background-image: url(../icons/bg.jpg);
+  position: relative;
+  width: 100%;
+  border: 1px solid green;
+  height: 300px;
+  box-sizing: border-box;
+}
+
+#name {
+  position: relative;
+  top: 250px;
+  left: 450px;
+  font-size: 36px;
+  color: #99CC00;
+}
+
+#speciality {
+  position: relative;
+  left: 470px;
+  bottom: 200px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #006666;
+}
+
+#photoContainerView {
+  position: relative;
+  left: 200px;
+  bottom: 130px;
+  background: #DCDCDC;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #006666;
+  border-radius: 20px;
+  background-image: url(../icons/instead-user-photo.jpg);
+  background-size: 200px 200px;
+  box-shadow: 5px 5px 20px #999999;
+}
+
+#userPhotoView {
+  width: 200px;
+  height: 200px;
+	border-radius: 20px;
+  border: none;
+}
+/*===============HEADER================================*/
+
+/*===============TABS==================================*/
+/* Базовый контейнер табов */
+.tabs {
+  min-width: 320px;
+  max-width: 800px;
+  padding: 0px;
+  margin: 0 auto;
+}
+/* Стили секций с содержанием */
+.tabs>section {
+  display: none;
+  min-height: 400px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 20px #999999;
+}
+.tabs>section>label {
+  margin: 0 0 5px;
+  line-height: 1.5;
+  color: #383838;
+  /* прикрутим анимацию */
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+/* Описываем анимацию свойства opacity */
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Прячем чекбоксы */
+.tabs>input {
+  display: none;
+  position: absolute;
+}
+/* Стили переключателей вкладок (табов) */
+.tabs>label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #FF9999;
+  border: 0px solid #ddd;
+  border-width: 1px 1px 1px 1px;
+  background: #f1f1f1;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 3px -4px 5px #CCCCCC;
+}
+/* Шрифт-иконки от Font Awesome в формате Unicode */
+.tabs>label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.tabs>label[for*="1"]:before {
+  content: "\2637";
+}
+.tabs>label[for*="2"]:before {
+  content: "\2712";
+}
+.tabs>label[for*="3"]:before {
+  content: "\260E";
+}
+
+/* Изменения стиля переключателей вкладок при наведении */
+
+.tabs>label:hover {
+  color: #FF0033;
+  transition: 500ms;
+  cursor: pointer;
+}
+/* Стили для активной вкладки */
+.tabs>input:checked+label {
+  color: #006666;
+  border-top: 1px solid #009933;
+  border-bottom: 1px solid #FFFFFF;
+  background: #FFFFFF;
+}
+/* Активация секций с помощью псевдокласса :checked */
+#tab1:checked~#content-tab1, #tab2:checked~#content-tab2, #tab3:checked~#content-tab3 {
+  display: block;
+}
+/* Убираем текст с переключателей
+* и оставляем иконки на малых экранах
+*/
+
+@media screen and (max-width: 680px) {
+  .tabs>label {
+    font-size: 0;
+  }
+  .tabs>label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+/* Изменяем внутренние отступы
+*  переключателей для малых экранов
+*/
+@media screen and (max-width: 400px) {
+  .tabs>label {
+    padding: 15px;
+  }
+}
+/*===============TABS==================================*/
+
+/*===============USER DATAS============================*/
+.data_list_container {
+  /*border: 2px solid grey;*/
+  padding: 5px;
+}
+
+.name_label {
+  font-family: arial, sans-serif;
+  font-size: 18px;
+  margin-right: 5px;
+  padding: 2px 10px 2px 10px;
+  /*border: 1px solid red;*/
+  float: left;
+  width: 230px;
+}
+
+.respond {
+  font-family: arial, sans-serif;
+  font-size: 18px;
+  margin-left: 255px;
+  /*border: 1px solid green;*/
+  padding: 2px 10px 2px 10px;
+  /*text-indent: 10px;*/
+  text-align: left;
+  border-left: 2px solid #00CCCC;
+}
+
+.respond label a {
+  text-decoration: none;
+  color: #1C1C1C;
+}
+
+/*===============USER DATAS============================*/
+
+/*===============COMMENTS==============================*/
+
+#comments_container {
+  border: 1px solid green;
+  min-width: 320px;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.comment_box {
+  min-width: 320px;
+  max-width: 800px;
+  background-color: #F5F5F5;
+  border: 1px solid #00CCCC;
+  border-radius: 5px;
+  margin-top: 20px;
+  box-shadow: 5px 5px 20px #999999;
+}
+
+#buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.dropdown-btn {
+  border: 1px solid #00CCCC;
+  border-radius: 5px;
+  display:inline-block;
+  color:#009999;
+  font-size:15px;
+  font-weight:bold;
+  padding: 0px 5px 0px 5px;
+  text-decoration:none;
+  margin-top: 5px;
+  /*border: solid 0.375em;
+  border-image: linear-gradient(#fdfdfd, #c4c4c4) 1;*/
+  box-shadow: 0 0.375em 0.5em -0.125em #808080;
+  background: linear-gradient(#efefef, #c5c5c5);
+  cursor: pointer
+}
+
+.dropdown-btn:hover {
+  box-shadow: 0 0 2px #00CCCC;
+}
+
+.dropdown-btn:active {
+  box-shadow: 0 1px 0 rgba(105, 105, 105, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset;
+	transform: translatey(1px);
+}
+
+.dropdown-btn:active ~ #dropdown-menu {
+  box-shadow: 5px 5px 10px #999999;
+  display: block;
+}
+
+#dropdown-menu {
+  display: none;
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  list-style: none;
+  background-color:#ededed;
+  border:1px solid #00CCCC;
+  border-radius: 5px;
+  font-size:15px;
+  padding: 0px 5px 0px 5px;
+  text-decoration:none;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer
+}
+
+.dropdown-item {
+
+}
+
+.roll-down {
+  cursor: pointer;
+  color: #009999;
+  font-size: 10pt;
+  margin-right: 5px;
+}
+
+.roll-up {
+  cursor: pointer;
+  color: #CC0000;
+  font-size: 10pt;
+  margin-right: 5px;
+}
+/*===============COMMENTS==============================*/
+
+/*===============BUTTON ADD COMMENT====================*/
+#button {
+			border-left: 2px solid #33CCFF;
+			border-top: 2px solid #33CCFF;
+			width: 170px;
+			height: 30px;
+			padding: 5px;
+      margin: 5px;
+			transition: 0.75s;
+		}
+
+		#inscription {
+			font-size: 16px;
+			margin-left: 20px;
+			color: #33CCFF;
+			position: relative;
+			top: 2px;
+			transition: 0.75s;
+		}
+
+    #plus {
+    	color: #009999;
+    	font-size: 18px;
+      margin-right: 5px;
+    }
+
+		#bottom-border {
+			width: 150px;
+			border-bottom: 2px solid #33CCFF;
+			position: relative;
+			top: 12px;
+			right: 5px;
+			transition: 0.75s;
+		}
+
+		#right-border {
+			border-right: 2px solid #33CCFF;
+			height: 20px;
+			position: relative;
+			left: 5px;
+			bottom: 30px;
+			transition: 0.75s;
+		}
+
+		#button:hover {
+			background-color: #99CCFF;
+			transition: 1s;
+		}
+
+		#button:hover #inscription {
+			color: white;
+			transition: 0.75s;
+		}
+
+		#button:hover #bottom-border {
+			width: 180px;
+			transition: 0.75s;
+		}
+
+		#button:hover #right-border {
+			height: 40px;
+			transition: 0.75s;
+		}
+/*===============BUTTON ADD COMMENT====================*/

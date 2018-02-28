@@ -18,11 +18,12 @@ public class UserService {
 
 	public User create(User user) {
 		return transactionUtils.performInsideTransaction(entityManager -> {
-			entityManager.persist(user);
 
 			User result = new User();
 			result.setId(user.getId());
 			result.setLogin(user.getLogin());
+			
+			entityManager.persist(user);
 			
 			return result;
 		});

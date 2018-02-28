@@ -1,6 +1,8 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,7 +37,7 @@ public class UserProfile {
 	@Column(name = "SPECIALITY", nullable = false)
 	private String speciality;
 	
-	@Column(name = "ESSAY", columnDefinition="TEXT")
+	@Column(name = "ESSAY", columnDefinition = "TEXT")
 	private String essay;
 	
 	@Column(name = "PRICE", nullable = false)
@@ -50,14 +53,6 @@ public class UserProfile {
 	@Column(name = "BIRTHDAY")
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	
-	@Column(name = "RATING", nullable = false)
-	private double rating;
-/*	
-	//Сделать форму для отзывов
-	@Column(name = "COMMENTS")
-	private String comments;
-*/	
 
 	@Column(name = "PHONE_NUMBER")
 	private String phoneNumber;
@@ -76,7 +71,14 @@ public class UserProfile {
 	
 	@Column(name = "USER_PHOTO")
 	@Lob
-	private byte[] userPhotoSrc;
+	private byte[] userPhoto;
+	
+	@Column(name = "USER_DIPLOMA")
+	@Lob
+	private byte[] userDiploma;
+	
+	@OneToMany(mappedBy = "userProfile")
+	private Set<Comment> commentList = new HashSet<>();
 	
 	@OneToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
@@ -145,32 +147,27 @@ public class UserProfile {
 	public void setExperience(Date experience) {
 		this.experience = experience;
 	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-/*
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-*/
 	
 //------------------------------------------------------
-	public byte[] getUserPhotoSrc() {
-		return userPhotoSrc;
+	public byte[] getUserPhoto() {
+		return userPhoto;
 	}
 
-	public void setUserPhotoSrc(String userPhotoSrc) {
+	public void setUserPhoto(String userPhoto) {
 		try {
-			this.userPhotoSrc = Base64.decodeBase64(userPhotoSrc);
+			this.userPhoto = Base64.decodeBase64(userPhoto);
+		} catch (IllegalArgumentException ex) {
+			ex.printStackTrace();
+		}
+ 	}
+	
+	public byte[] getUserDiploma() {
+		return userDiploma;
+	}
+
+	public void setUserDiploma(String userDiploma) {
+		try {
+			this.userDiploma = Base64.decodeBase64(userDiploma);
 		} catch (IllegalArgumentException ex) {
 			ex.printStackTrace();
 		}
@@ -239,5 +236,21 @@ public class UserProfile {
 			return;
 		}
 		user.addUserProfile(this, true);
+	}
+
+	public Set<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void addComment(Comment comment) {
+		addComment(comment, false);
+	}
+	
+	public void addComment(Comment comment, boolean otherSideHasBeenAlreadySet) {
+		getCommentList().add(comment);
+		if(otherSideHasBeenAlreadySet) {
+			return;
+		}
+		comment.setUserProfile(this, true);
 	}
 }

@@ -1,12 +1,10 @@
 package com.AndriiGubarenko.mentalHealth.service.domain;
 
-import java.util.Set;
-
 public class PlainUser {
 	private Long id;
 	private String login;
 	private String password;
-	private Set<Long> userProfileId;
+	private Long userProfileId;
 	
 	public Long getId() {
 		return id;
@@ -26,10 +24,10 @@ public class PlainUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Set<Long> getUserProfileId() {
+	public Long getUserProfileId() {
 		return userProfileId;
 	}
-	public void setUserProfileId(Set<Long> userProfileId) {
+	public void setUserProfileId(Long userProfileId) {
 		this.userProfileId = userProfileId;
 	}
 	

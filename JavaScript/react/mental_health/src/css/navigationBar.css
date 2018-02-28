@@ -1,57 +1,173 @@
-#NavigationBar {
-  position: fixed;
-  display: inline-block;
-  width: 250px;
-  float: left;
-  margin: 50px 0 0 50px;
+@media screen and (max-width: 768px) {
+  #nav_bar_full {
+    display: none;
+  }
+
+  #nav_bar_small {
+    display: inline-block;
+    width: 250px;
+    float: left;
+    margin: 50px 0 50px 0;
+  }
+
+  #img {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    border: 1px solid #006666;
+    background-color: white;
+    background-image: url(../icons/Menu_icon2.png);
+    border-radius: 10px;
+  }
+
+  #list{
+    width: 170px;
+    height: auto;
+    left: 0;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #006666;
+    display: none;
+  }
+
+  #list ul li {
+    text-decoration: none;
+    color: #006666;
+    text-align: left;
+    padding: 5px 20px 5px 5px;
+    border: 1px solid white;
+  }
+  #list ul li:hover {
+    color: #99CC00;
+    transition: 0.25s;
+  }
+
+  #list ul li span:hover {
+    color: #99CC00;
+    transition: 0.25s;
+  }
+
+   #list ul li a{
+     text-decoration: none;
+     color: #006666;
+   }
+
+   #img:hover ~ #list {
+     display: block;
+   }
+
+   #list:hover {
+     display: block;
+   }
 }
+@media screen and (min-width: 769px) {
+  #nav_bar_small {
+    display: none;
+  }
+  #nav_bar_full {
+  	width: 100%;
+    overflow: auto;
+  }
+  #nav_container {
+    margin: 0 50px 0 50px;
+  	float: left;
+    box-sizing: border-box;
+  }
+  #logo_container {
+    margin: 0 50px 0 50px;
+  	float: left;
+  	box-sizing: border-box;
+  }
+  #tools_container a{
+  	margin-top: 40px;
+  	float: right;
+  	padding-right: 30px;
+  	text-align: right;
+  	color: #006666;
+  	font-family: Tahoma, Geneva, sans-serif;
+  	font-size: 16px;
+  	line-height: 30px;
+  	text-decoration: none;
+  	box-sizing: border-box;
+  	-webkit-transition: 500ms;
+  	-moz-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+    box-sizing: border-box;
+  }
 
-#img {
-  width: 60px;
-  height: 60px;
-  background-size: cover;
-  border: 1px solid skyblue;
-  background-color: white;
-  background-image: url(../icons/Menu_icon1.png);
-  border-radius: 10px;
+  #nav {
+  	height: 40px;
+  	width: 400px;
+  	margin: 40px auto auto 100px;
+  	position: relative;
+  }
+  #nav li {
+  	list-style: none;
+  	float: left;
+  	width: 100px;
+  	height: 40px;
+  	text-align: center;
+  }
+
+  #nav li a {
+  	color: #006666;
+  	font-family: Tahoma, Geneva, sans-serif;
+  	font-size: 18px;
+  	line-height: 30px;
+  	text-decoration: none;
+  	display: block;
+  	width: 100px;
+  	height: 40px;
+  	-webkit-transition: 500ms;
+  	-moz-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+  }
+  #slider {
+  	position: absolute;
+  	top: 35px;
+  	height: 5px;
+  	background: #99CC00;
+  	width: 100px;
+  	-moz-border-radius-topleft: 0px;
+  	-moz-border-radius-topright: 0px;
+  	-moz-border-radius-bottomright: 10px;
+  	-moz-border-radius-bottomleft: 10px;
+  	-webkit-border-radius: 0px 0px 10px 10px;
+  	border-radius: 0px 0px 10px 10px;
+  	-webkit-transition:left .3s;
+  	   -moz-transition:left .3s;
+  	     -o-transition:left .3s;
+  	        transition:left .3s;
+  }
+  #nav li a:hover {
+  	color: #99CC00;
+  	-webkit-transition: 500ms;
+  	-moz-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+  }
+  #tools_container a:hover {
+  	color: #99CC00;
+  	-webkit-transition: 500ms;
+  	-moz-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+  }
+  #nav li:nth-child(1):hover ~ #slider {
+  	left: 40px;
+  }
+
+  #nav li:nth-child(2):hover ~ #slider {
+  	left: 140px;
+  }
+
+  #nav li:nth-child(3):hover ~ #slider {
+  	left: 242px;
+  }
+
+  #nav li:nth-child(4):hover ~ #slider {
+  	left: 340px;
+  }
 }
-
-#list{
-  width: 170px;
-  height: auto;
-  left: 0;
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid skyblue;
-  display: none;
-}
-
-#list ul li {
-  text-decoration: none;
-  color: grey;
-  text-align: left;
-  padding: 5px 20px 5px 5px;
-  border: 1px solid white;
-}
-#list ul li:hover {
-  color: skyblue;
-  transition: 0.25s;
-}
-
-#list ul li span:hover {
-  color: skyblue;
-  transition: 0.25s;
-}
-
- #list ul li a{
-   text-decoration: none;
-   color: grey;
- }
-
- #img:hover ~ #list {
-   display: block;
- }
-
- #list:hover {
-   display: block;
- }
