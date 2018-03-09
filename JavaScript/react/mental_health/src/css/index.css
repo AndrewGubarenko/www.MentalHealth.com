@@ -5,6 +5,7 @@ body {
 	font: inherit;
 	font-size: 100%;
 	vertical-align: baseline;
-  background-color: #e7e5e9;
+  background-color: #f9f7f6;
+  overflow-x: hidden;
 /*  background-image: url(../icons/dot12_small.png);*/
 }

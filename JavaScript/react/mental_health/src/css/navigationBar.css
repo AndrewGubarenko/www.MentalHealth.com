@@ -1,4 +1,5 @@
 @media screen and (max-width: 768px) {
+
   #nav_bar_full {
     display: none;
   }
@@ -61,11 +62,14 @@
    }
 }
 @media screen and (min-width: 769px) {
+
   #nav_bar_small {
     display: none;
   }
   #nav_bar_full {
+    background-color: #02364c;
   	width: 100%;
+    position: absolute;
     overflow: auto;
   }
   #nav_container {
@@ -77,13 +81,14 @@
     margin: 0 50px 0 50px;
   	float: left;
   	box-sizing: border-box;
+    color: #e2cf11;
   }
   #tools_container a{
   	margin-top: 40px;
   	float: right;
   	padding-right: 30px;
   	text-align: right;
-  	color: #006666;
+  	color: #d4e1e9;
   	font-family: Tahoma, Geneva, sans-serif;
   	font-size: 16px;
   	line-height: 30px;
@@ -111,7 +116,7 @@
   }
 
   #nav li a {
-  	color: #006666;
+  	color: #d4e1e9;
   	font-family: Tahoma, Geneva, sans-serif;
   	font-size: 18px;
   	line-height: 30px;
@@ -128,7 +133,7 @@
   	position: absolute;
   	top: 35px;
   	height: 5px;
-  	background: #99CC00;
+  	background: #e2cf11;
   	width: 100px;
   	-moz-border-radius-topleft: 0px;
   	-moz-border-radius-topright: 0px;
@@ -142,14 +147,14 @@
   	        transition:left .3s;
   }
   #nav li a:hover {
-  	color: #99CC00;
+  	color: #e2cf11;
   	-webkit-transition: 500ms;
   	-moz-transition: 500ms;
   	-o-transition: 500ms;
   	transition: 500ms;
   }
   #tools_container a:hover {
-  	color: #99CC00;
+  	color: #e2cf11;
   	-webkit-transition: 500ms;
   	-moz-transition: 500ms;
   	-o-transition: 500ms;

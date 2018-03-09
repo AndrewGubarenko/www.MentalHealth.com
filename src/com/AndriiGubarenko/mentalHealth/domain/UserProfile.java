@@ -1,8 +1,11 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +21,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+
+
 
 @Entity
 @Table(name = "USER_PROFILE")
@@ -36,6 +41,9 @@ public class UserProfile {
 	
 	@Column(name = "SPECIALITY", nullable = false)
 	private String speciality;
+	
+	@Column(name = "LOCATION")
+	private String location;
 	
 	@Column(name = "ESSAY", columnDefinition = "TEXT")
 	private String essay;
@@ -118,6 +126,14 @@ public class UserProfile {
 
 	public String getEssay() {
 		return essay;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public void setEssay(String essay) {
@@ -252,5 +268,52 @@ public class UserProfile {
 			return;
 		}
 		comment.setUserProfile(this, true);
+	}
+	
+	//TODO: implement correct method
+	public void setComments(Collection<Comment> comments) {
+		this.removeAllComments();
+		comments.forEach(this::addComment);
+	}
+	
+	public void removeAllComments() {
+		getCommentList().stream().collect(Collectors.toList()).forEach(this::removeComment);
+	}
+	
+	public void removeComment(Comment comment) {
+		removeComment(comment, false);
+	}
+	
+	public void removeComment(Comment comment, boolean otherSideRemoved) {
+		this.getCommentList().remove(comment);
+		if(otherSideRemoved) {
+			return;
+		}
+		comment.removeUserProfile(true);
+	}
+
+	public int hash() {
+		return Objects.hash(this.getId(), this.getName());
+	}
+	
+	public boolean equals(Object object) {
+		if(object == null) {
+			return false;
+		}
+		
+		if (!(object instanceof Comment)) {
+			return false;
+		}
+		
+		Comment that = (Comment) object;
+		
+		if(!Objects.equals(this.getId(), that.getId())) {
+			return false;
+		}
+		
+		if(!Objects.equals(this.getName(), that.getVisitorName())) {
+			return false;
+		}
+		return true;
 	}
 }

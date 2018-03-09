@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AndriiGubarenko.mentalHealth.rest.utils.AuthenticationUtils;
-import com.AndriiGubarenko.mentalHealth.service.UserProfileService;
+import com.AndriiGubarenko.mentalHealth.service.IUserProfileService;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 
 @RestController
 public class UserProfileRest {
 	@Resource(name = "userProfileService")
-	private UserProfileService userProfileService;
+	private IUserProfileService userProfileService;
 	
 	@Resource(name = "authenticationUtils")
 	private AuthenticationUtils authenticationUtils;

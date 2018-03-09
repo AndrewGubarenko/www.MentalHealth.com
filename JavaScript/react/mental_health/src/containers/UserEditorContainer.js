@@ -9,6 +9,7 @@ export default class UserEditorContainer extends React.Component {
       name: "",
       surname: "",
       speciality: "",
+      location: "",
       essay: "",
       price: 100,
       currency: "UAH",
@@ -54,6 +55,10 @@ export default class UserEditorContainer extends React.Component {
 
   onChangeSpeciality = (event) => {
     this.setState({speciality: event.target.value});
+  }
+
+  onChangeLocation = (event) => {
+    this.setState({location: event.target.value});
   }
 
   onChangeEssay = (event) => {
@@ -109,6 +114,7 @@ export default class UserEditorContainer extends React.Component {
       name: this.state.name,
       surname: this.state.surname,
       speciality: this.state.speciality,
+      location: this.state.location,
       essay: this.state.essay,
       price: this.state.price,
       currency: this.state.currency,
@@ -148,6 +154,8 @@ export default class UserEditorContainer extends React.Component {
         onChangeSurname={this.onChangeSurname}
         speciality={this.state.speciality}
         onChangeSpeciality={this.onChangeSpeciality}
+        location={this.state.location}
+        onChangeLocation={this.onChangeLocation}
         essay={this.state.essay}
         onChangeEssay={this.onChangeEssay}
         price={this.state.price}

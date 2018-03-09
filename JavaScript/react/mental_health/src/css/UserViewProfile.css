@@ -1,31 +1,17 @@
 /*===============HEADER================================*/
-#userContainer {
-  margin: 30px 0 30px 10%;
-  width: 80%;
-  border: 1px solid red;
-  overflow: hidden;
-}
-
-#userData {
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid blue;
-}
 
 #person_container {
-  border: 1px solid yellowgreen;
+  /*border: 1px solid yellowgreen;*/
   margin-bottom: 50px;
-  width: 100%;
   box-sizing: border-box;
   height: 400px;
-  background-color: white;
+  background-color: #d4e1e9;
 }
 
 #cover {
-  background-image: url(../icons/bg.jpg);
-  position: relative;
+  background-color: #02364c;
   width: 100%;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   height: 300px;
   box-sizing: border-box;
 }
@@ -35,7 +21,7 @@
   top: 250px;
   left: 450px;
   font-size: 36px;
-  color: #99CC00;
+  color: #e2cf11;
 }
 
 #speciality {
@@ -44,7 +30,7 @@
   bottom: 200px;
   font-size: 24px;
   font-weight: bold;
-  color: #006666;
+  color: #037492;
 }
 
 #photoContainerView {
@@ -54,11 +40,11 @@
   background: #DCDCDC;
   width: 200px;
   height: 200px;
-  border: 1px solid #006666;
+  border: 1px solid #037492;
   border-radius: 20px;
   background-image: url(../icons/instead-user-photo.jpg);
   background-size: 200px 200px;
-  box-shadow: 5px 5px 20px #999999;
+  box-shadow: 5px 5px 20px #037492;
 }
 
 #userPhotoView {
@@ -69,22 +55,44 @@
 }
 /*===============HEADER================================*/
 
+
+#data_container {
+/*  border: 1px solid red;*/
+  padding-bottom: 50px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.line {
+  margin: 50px auto auto 10%;
+  width: 80%;
+  border-bottom: 2px solid #e2cf11;
+  box-sizing: border-box;
+  float: left;
+  display: inline-block;
+  overflow: auto;
+}
+
 /*===============TABS==================================*/
 /* Базовый контейнер табов */
 .tabs {
-  min-width: 320px;
-  max-width: 800px;
-  padding: 0px;
-  margin: 0 auto;
+  /*border: 1px solid blue;*/
+  width: 700px;
+  margin: 50px 0 50px 11%;
+  box-sizing: border-box;
+  float: left;
+  display: inline-block;
+  overflow: auto;
+  padding: 20px;
 }
 /* Стили секций с содержанием */
 .tabs>section {
   display: none;
   min-height: 400px;
   padding: 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 5px 5px 20px #999999;
+  background: #d4e1e9;
+  border: 1px solid #037492;
+  box-shadow: 5px 5px 20px #037492;
 }
 .tabs>section>label {
   margin: 0 0 5px;
@@ -119,7 +127,6 @@
 /* Прячем чекбоксы */
 .tabs>input {
   display: none;
-  position: absolute;
 }
 /* Стили переключателей вкладок (табов) */
 .tabs>label {
@@ -128,12 +135,12 @@
   padding: 15px 25px;
   font-weight: 600;
   text-align: center;
-  color: #FF9999;
+  color: #d4e1e9;
   border: 0px solid #ddd;
   border-width: 1px 1px 1px 1px;
-  background: #f1f1f1;
+  background: #037492;
   border-radius: 3px 3px 0 0;
-  box-shadow: 3px -4px 5px #CCCCCC;
+  box-shadow: 3px -4px 5px #d4e1e9;
 }
 /* Шрифт-иконки от Font Awesome в формате Unicode */
 .tabs>label:before {
@@ -150,23 +157,27 @@
 .tabs>label[for*="3"]:before {
   content: "\260E";
 }
+.tabs>label[for*="4"]:before {
+  content: "\2685";
+}
 
 /* Изменения стиля переключателей вкладок при наведении */
-
 .tabs>label:hover {
-  color: #FF0033;
+  color: #e2cf11;
   transition: 500ms;
   cursor: pointer;
 }
 /* Стили для активной вкладки */
 .tabs>input:checked+label {
-  color: #006666;
-  border-top: 1px solid #009933;
-  border-bottom: 1px solid #FFFFFF;
-  background: #FFFFFF;
+  color: #02364c;
+  border-top: 2px solid #02364c;
+  border-left: 1px solid #037492;
+  border-right: 1px solid #037492;
+  border-bottom: 1px solid #d4e1e9;
+  background: #d4e1e9;
 }
 /* Активация секций с помощью псевдокласса :checked */
-#tab1:checked~#content-tab1, #tab2:checked~#content-tab2, #tab3:checked~#content-tab3 {
+#tab1:checked~#content-tab1, #tab2:checked~#content-tab2, #tab3:checked~#content-tab3, #tab4:checked~#content-tab4 {
   display: block;
 }
 /* Убираем текст с переключателей
@@ -196,6 +207,7 @@
 .data_list_container {
   /*border: 2px solid grey;*/
   padding: 5px;
+  height: auto;
 }
 
 .name_label {
@@ -224,25 +236,53 @@
   color: #1C1C1C;
 }
 
+#diplomaScreenContainerView {
+  margin: 30px auto;
+  width: 400px;
+  height: 300px;
+  background: #DCDCDC;
+  border: 1px solid #037492;
+  border-radius: 20px;
+  background-color: white;
+  background-image: url(../icons/diploma.png);
+  background-size: 400px 300px;
+  box-shadow: 0 0 10px grey;
+}
+
+#diplomaScreenPhotoViev {
+
+}
+
 /*===============USER DATAS============================*/
 
 /*===============COMMENTS==============================*/
 
 #comments_container {
-  border: 1px solid green;
-  min-width: 320px;
-  max-width: 800px;
-  margin: 50px auto;
+  /*border: 1px solid green;*/
+  margin-top: 50px;
+  margin-right: 11%;
+  width: 400px;
+  box-sizing: border-box;
+  float: right;
+  display: inline-block;
+  overflow: auto;
+  padding: 10px;
 }
 
 .comment_box {
-  min-width: 320px;
-  max-width: 800px;
-  background-color: #F5F5F5;
-  border: 1px solid #00CCCC;
+  min-width: 180px;
+  max-width: 350px;
+  background-color: #d4e1e9;
+  border: 1px solid #037492;
   border-radius: 5px;
   margin-top: 20px;
-  box-shadow: 5px 5px 20px #999999;
+  box-shadow: 5px 5px 10px #037492;
+}
+
+.sub_comment_box {
+  margin-left: 50px;
+  margin-top: 10px;
+  box-shadow: 5px 5px 10px #02364c;
 }
 
 #buttonContainer {
@@ -253,7 +293,7 @@
 }
 
 .dropdown-btn {
-  border: 1px solid #00CCCC;
+  border: 1px solid #02364c;
   border-radius: 5px;
   display:inline-block;
   color:#009999;
@@ -290,7 +330,7 @@
   height: 25px;
   list-style: none;
   background-color:#ededed;
-  border:1px solid #00CCCC;
+  border:1px solid #02364c;
   border-radius: 5px;
   font-size:15px;
   padding: 0px 5px 0px 5px;
@@ -321,65 +361,71 @@
 
 /*===============BUTTON ADD COMMENT====================*/
 #button {
-			border-left: 2px solid #33CCFF;
-			border-top: 2px solid #33CCFF;
-			width: 170px;
-			height: 30px;
-			padding: 5px;
-      margin: 5px;
-			transition: 0.75s;
-		}
+  position: relative;
+	border-left: 2px solid #33CCFF;
+	border-top: 2px solid #33CCFF;
+	width: 170px;
+	height: 30px;
+	padding: 5px;
+  margin: 5px;
+	transition: 0.75s;
+}
 
-		#inscription {
-			font-size: 16px;
-			margin-left: 20px;
-			color: #33CCFF;
-			position: relative;
-			top: 2px;
-			transition: 0.75s;
-		}
+#button:active {
+  top: -2px;
+  left: 2px;
+}
 
-    #plus {
-    	color: #009999;
-    	font-size: 18px;
-      margin-right: 5px;
-    }
+#inscription {
+	font-size: 16px;
+	margin-left: 20px;
+	color: #33CCFF;
+	position: relative;
+	top: 2px;
+	transition: 0.75s;
+}
 
-		#bottom-border {
-			width: 150px;
-			border-bottom: 2px solid #33CCFF;
-			position: relative;
-			top: 12px;
-			right: 5px;
-			transition: 0.75s;
-		}
+#plus {
+	color: #009999;
+	font-size: 18px;
+  margin-right: 5px;
+}
 
-		#right-border {
-			border-right: 2px solid #33CCFF;
-			height: 20px;
-			position: relative;
-			left: 5px;
-			bottom: 30px;
-			transition: 0.75s;
-		}
+#bottom-border {
+	width: 150px;
+	border-bottom: 2px solid #33CCFF;
+	position: relative;
+	top: 12px;
+	right: 5px;
+	transition: 0.75s;
+}
 
-		#button:hover {
-			background-color: #99CCFF;
-			transition: 1s;
-		}
+#right-border {
+	border-right: 2px solid #33CCFF;
+	height: 20px;
+	position: relative;
+	left: 5px;
+	bottom: 30px;
+	transition: 0.75s;
+}
 
-		#button:hover #inscription {
-			color: white;
-			transition: 0.75s;
-		}
+#button:hover {
+	background-color: #99CCFF;
+	transition: 1s;
+}
 
-		#button:hover #bottom-border {
-			width: 180px;
-			transition: 0.75s;
-		}
+#button:hover #inscription {
+	color: white;
+	transition: 0.75s;
+}
 
-		#button:hover #right-border {
-			height: 40px;
-			transition: 0.75s;
-		}
+#button:hover #bottom-border {
+	width: 180px;
+	transition: 0.75s;
+}
+
+#button:hover #right-border {
+	height: 40px;
+	transition: 0.75s;
+}
 /*===============BUTTON ADD COMMENT====================*/

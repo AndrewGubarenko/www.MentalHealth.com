@@ -1,5 +1,7 @@
 package com.AndriiGubarenko.mentalHealth.service.utils;
 
+import java.util.stream.Collectors;
+
 import com.AndriiGubarenko.mentalHealth.domain.Comment;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
@@ -13,6 +15,7 @@ public class Converter {
 		plainUserProfile.setName(userProfile.getName());
 		plainUserProfile.setSurname(userProfile.getSurname());
 		plainUserProfile.setSpeciality(userProfile.getSpeciality());
+		plainUserProfile.setLocation(userProfile.getLocation());
 		plainUserProfile.setEssay(userProfile.getEssay());
 		plainUserProfile.setPrice(userProfile.getPrice());
 		plainUserProfile.setCurrency(userProfile.getCurrency());
@@ -24,6 +27,8 @@ public class Converter {
 		plainUserProfile.setFacebook(userProfile.getFacebook());
 		plainUserProfile.setSkype(userProfile.getSkype());
 		plainUserProfile.setUserId(userProfile.getUser().getId());
+		
+		plainUserProfile.setCommentIds(userProfile.getCommentList().stream().map(Converter::toPlainComment).collect(Collectors.toSet()));
 		
 		plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
 		plainUserProfile.setUserDiploma(userProfile.getUserDiploma());

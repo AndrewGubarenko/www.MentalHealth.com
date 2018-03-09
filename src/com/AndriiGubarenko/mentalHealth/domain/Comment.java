@@ -12,21 +12,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "COMMENTS")
 public class Comment {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name= "ID")
+	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "VISITOR_NAME")
 	private String visitorName;
-	
+
 	@Column(name = "COMMENT_TEXT", columnDefinition = "TEXT")
 	private String commentText;
-	
+
 	@Column(name = "RATING")
 	private double rating;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "USER_PROFILE_ID", nullable = false)
 	private UserProfile userProfile;
@@ -70,12 +70,25 @@ public class Comment {
 	public void setUserProfile(UserProfile userProfile) {
 		setUserProfile(userProfile, false);
 	}
-	
+
 	public void setUserProfile(UserProfile userProfile, boolean otherSideHasBeenAlreadySet) {
 		this.userProfile = userProfile;
-		if(otherSideHasBeenAlreadySet) {
+		if (otherSideHasBeenAlreadySet) {
 			return;
 		}
 		userProfile.addComment(this, true);
+	}
+	
+	public void removeUserProfile() {
+		removeUserProfile(false);
+	}
+	
+	public void removeUserProfile(boolean otherSideRemoved) {
+		UserProfile userProfile = this.getUserProfile();
+		this.setUserProfile(null);
+		if(otherSideRemoved) {
+			return;
+		}
+		userProfile.removeComment(this, true);
 	}
 }

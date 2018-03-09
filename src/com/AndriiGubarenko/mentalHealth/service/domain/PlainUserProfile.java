@@ -12,6 +12,7 @@ public class PlainUserProfile {
 	private String name;
 	private String surname;
 	private String speciality;
+	private String location;
 	private String essay;
 	private Long price;
 	private String currency;
@@ -25,7 +26,8 @@ public class PlainUserProfile {
 	private String userPhoto;
 	private String userDiploma;
 	private Long userId;
-	private Set<Long> commentIds = new HashSet<>();
+	//TODO: define correct collection
+	private Set<PlainComment> commentIds = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -57,6 +59,14 @@ public class PlainUserProfile {
 
 	public void setSpeciality(String spesiality) {
 		this.speciality = spesiality;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getEssay() {
@@ -167,11 +177,11 @@ public class PlainUserProfile {
 		this.currency = currency;
 	}
 
-	public Set<Long> getComment() {
+	public Set<PlainComment> getCommentIds() {
 		return commentIds;
 	}
 
-	public void setComment(Set<Long> commentIds) {
+	public void setCommentIds(Set<PlainComment> commentIds) {
 		this.commentIds = commentIds;
-	}	
+	}
 }

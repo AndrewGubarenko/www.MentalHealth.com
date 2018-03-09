@@ -34,6 +34,11 @@ export default class UserEditor extends React.Component {
           </div>
 
           <div className="FormStyle-block">
+            <label className="form-label">Location:</label>
+            <input className="form-control" type="text" placeholder="City of your work" onChange={this.props.onChangeLocation} value={this.props.location} />
+          </div>
+
+          <div className="FormStyle-block">
             <label className="form-label">Essay:</label>
             <textarea id="large-form-control" type="text" placeholder="Describe youself by a few words" onChange={this.props.onChangeEssay} value={this.props.essay} />
           </div>

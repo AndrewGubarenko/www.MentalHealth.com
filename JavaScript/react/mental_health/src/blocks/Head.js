@@ -4,7 +4,7 @@ class Head extends React.Component {
   render() {
     return (
       <div>
-        <title>{this.props.title}</title>
+        <title>Mental Health</title>
         <meta charSet="utf-8" />
         <meta name="description" content="Mental Health" />
 
