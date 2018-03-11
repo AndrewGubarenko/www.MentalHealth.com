@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AndriiGubarenko.mentalHealth.domain.User;
+import com.AndriiGubarenko.mentalHealth.rest.aspect.Authenticational;
 import com.AndriiGubarenko.mentalHealth.rest.utils.AuthenticationUtils;
 import com.AndriiGubarenko.mentalHealth.security.TokenManager;
 import com.AndriiGubarenko.mentalHealth.security.TokenPayload;
@@ -32,6 +33,8 @@ public class UserRest {
 	
 	@Resource(name = "tokenManager")
 	private TokenManager tokenManager;
+	
+	private Long userId;
 	
 	@RequestMapping(path = "/user", method = RequestMethod.POST)
 	public ResponseEntity<User> create(@RequestBody User user) {
@@ -63,10 +66,9 @@ public class UserRest {
 
 	//TODO: verify this
 	@RequestMapping(path = "/userProfile/{id}", method = RequestMethod.DELETE)
+	@Authenticational
 	public ResponseEntity<String> remove(HttpServletRequest request, @PathVariable Long id) {
-		return authenticationUtils.performAfterAuthentication(request, userId -> {
-			String result = userService.remove(userId);
-			return new ResponseEntity<>(result, HttpStatus.OK);
-		});
+		String result = userService.remove(userId);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

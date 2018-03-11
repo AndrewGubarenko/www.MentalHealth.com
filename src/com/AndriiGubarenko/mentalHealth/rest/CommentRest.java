@@ -20,7 +20,6 @@ public class CommentRest {
 	
 	@RequestMapping(path = "/userProfile/comment", method = RequestMethod.POST)
 	public ResponseEntity<PlainComment> create(HttpServletRequest request, @RequestBody PlainComment plainComment) {
-		
 		Long userProfileId = plainComment.getUserProfileId();
 		PlainComment result = commentService.create(userProfileId, plainComment);
 		return new ResponseEntity<>(result, HttpStatus.OK);	

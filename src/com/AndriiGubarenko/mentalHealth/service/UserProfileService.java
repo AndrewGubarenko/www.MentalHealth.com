@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.Comment;
 import com.AndriiGubarenko.mentalHealth.domain.User;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
-import com.AndriiGubarenko.mentalHealth.service.annotation.Transactional;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
@@ -20,6 +21,7 @@ import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 @Component
 public class UserProfileService implements IUserProfileService {
 	
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
@@ -49,7 +51,7 @@ public class UserProfileService implements IUserProfileService {
 		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
 		
-		userProfile.setComments(createComments(entityManager, plainUserProfile.getCommentIds()));
+		//userProfile.setComments(createComments(entityManager, plainUserProfile.getCommentIds()));
 
 		return Converter.toPlainUserProfile(userProfile);
 	}
@@ -65,7 +67,7 @@ public class UserProfileService implements IUserProfileService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public PlainUserProfile get(Long userId, Long userProfileId) {
 		return get(entityManager, userId, userProfileId);
 	}
