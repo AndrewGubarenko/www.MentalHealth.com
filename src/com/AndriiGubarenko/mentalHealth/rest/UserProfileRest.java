@@ -17,6 +17,7 @@ import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 
 @RestController
 public class UserProfileRest {
+	
 	@Resource(name = "userProfileService")
 	private IUserProfileService userProfileService;
 	

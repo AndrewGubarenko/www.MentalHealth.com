@@ -17,7 +17,7 @@ import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 
-@Component("userProfileService")
+@Component
 public class UserProfileService implements IUserProfileService {
 	
 	private EntityManager entityManager;
@@ -27,7 +27,8 @@ public class UserProfileService implements IUserProfileService {
 	public PlainUserProfile update(Long userId, PlainUserProfile plainUserProfile) {
 		validationForUpdate(entityManager, userId, plainUserProfile);
 		authorizationForUpdate(entityManager, userId, plainUserProfile);
-
+		
+		// TODO: Correct getting userProfile
 		UserProfile userProfile = entityManager.find(UserProfile.class, plainUserProfile.getId());
 
 		userProfile.setName(plainUserProfile.getName());
@@ -128,7 +129,7 @@ public class UserProfileService implements IUserProfileService {
 		
 		entityManager.persist(userProfile);
 		
-		createComments(entityManager, plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
+		//createComments(entityManager, plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
 
 		return userProfile;
 	}
