@@ -1,5 +1,6 @@
 package com.AndriiGubarenko.mentalHealth.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class User {
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private UserProfile userProfile;
 
 	public String getLogin() {

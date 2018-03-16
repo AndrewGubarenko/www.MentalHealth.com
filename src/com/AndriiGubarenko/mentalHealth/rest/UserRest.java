@@ -3,10 +3,10 @@ package com.AndriiGubarenko.mentalHealth.rest;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.annotation.Resource;
 import javax.persistence.RollbackException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,21 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.AndriiGubarenko.mentalHealth.domain.User;
 import com.AndriiGubarenko.mentalHealth.rest.aspect.Authenticational;
-import com.AndriiGubarenko.mentalHealth.rest.utils.AuthenticationUtils;
 import com.AndriiGubarenko.mentalHealth.security.TokenManager;
 import com.AndriiGubarenko.mentalHealth.security.TokenPayload;
-import com.AndriiGubarenko.mentalHealth.service.UserService;
+import com.AndriiGubarenko.mentalHealth.service.IUserService;
 
 
 @RestController
 public class UserRest {
-	@Resource(name = "userService")
-	private UserService userService;
+	@Autowired
+	private IUserService userService;
 	
-	@Resource(name = "authenticationUtils")
-	private AuthenticationUtils authenticationUtils;
-	
-	@Resource(name = "tokenManager")
+	@Autowired
 	private TokenManager tokenManager;
 	
 	private Long userId;

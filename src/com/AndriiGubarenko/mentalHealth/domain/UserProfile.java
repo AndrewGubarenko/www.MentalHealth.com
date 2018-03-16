@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -85,7 +86,7 @@ public class UserProfile {
 	@Lob
 	private byte[] userDiploma;
 	
-	@OneToMany(mappedBy = "userProfile")
+	@OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
 	private Set<Comment> commentList = new HashSet<>();
 	
 	@OneToOne

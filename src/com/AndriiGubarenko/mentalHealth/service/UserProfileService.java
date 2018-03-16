@@ -1,37 +1,35 @@
 package com.AndriiGubarenko.mentalHealth.service;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.AndriiGubarenko.mentalHealth.domain.Comment;
 import com.AndriiGubarenko.mentalHealth.domain.User;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
-import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
+import com.AndriiGubarenko.mentalHealth.repositories.UserCrud;
+import com.AndriiGubarenko.mentalHealth.repositories.UserProfileCrud;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 
 @Component
 public class UserProfileService implements IUserProfileService {
 	
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private UserProfileCrud userProfileCrud;
+	
+	@Autowired
+	private UserCrud userCrud;
 
 	@Override
 	@Transactional
 	public PlainUserProfile update(Long userId, PlainUserProfile plainUserProfile) {
-		validationForUpdate(entityManager, userId, plainUserProfile);
-		authorizationForUpdate(entityManager, userId, plainUserProfile);
+		validationForUpdate(userId, plainUserProfile);
+		authorizationForUpdate(userId, plainUserProfile);
 		
 		// TODO: Correct getting userProfile
-		UserProfile userProfile = entityManager.find(UserProfile.class, plainUserProfile.getId());
+		UserProfile userProfile = userProfileCrud.findById(plainUserProfile.getId()).get();
 
 		userProfile.setName(plainUserProfile.getName());
 		userProfile.setSurname(plainUserProfile.getSurname());
@@ -51,61 +49,47 @@ public class UserProfileService implements IUserProfileService {
 		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
 		
-		//userProfile.setComments(createComments(entityManager, plainUserProfile.getCommentIds()));
+		//userProfile.setComments(plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
 
 		return Converter.toPlainUserProfile(userProfile);
 	}
 
 	// TODO: implement method
-	private void validationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
+	private void validationForUpdate(Long userId, PlainUserProfile plainUserProfile) {
 
 	}
 
 	// TODO: implement method
-	private void authorizationForUpdate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
+	private void authorizationForUpdate(Long userId, PlainUserProfile plainUserProfile) {
 
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public PlainUserProfile get(Long userId, Long userProfileId) {
-		return get(entityManager, userId, userProfileId);
-	}
+		validationForGet(userId, userProfileId);
+		authorizationForGet(userId, userProfileId);
 
-	private PlainUserProfile get(EntityManager entityManager, Long userId, Long userProfileId) {
-		validationForGet(entityManager, userId, userProfileId);
-		authorizationForGet(entityManager, userId, userProfileId);
-
-		UserProfile userProfile = entityManager.find(UserProfile.class, userProfileId);
+		UserProfile userProfile = userProfileCrud.findById(userProfileId).get();
 
 		return Converter.toPlainUserProfile(userProfile);
 	}
 
 	// TODO: implement method
-	private void validationForGet(EntityManager entityManager, Long userId, Long userProfileId) {
+	private void validationForGet(Long userId, Long userProfileId) {
 
 	}
 
 	// TODO: implement method
-	private void authorizationForGet(EntityManager entityManager, Long userId, Long userProfileId) {
+	private void authorizationForGet(Long userId, Long userProfileId) {
 
 	}
 
 	@Override
 	@Transactional
 	public PlainUserProfile create(Long userId, PlainUserProfile plainUserProfile) {
-		validationForCreate(entityManager, userId, plainUserProfile);
-		UserProfile userProfile = create(entityManager, userId, plainUserProfile);
-		PlainUserProfile result = Converter.toPlainUserProfile(userProfile);
-		return result;
-	}
+		validationForCreate(userId, plainUserProfile);
 
-	// TODO: implement method
-	private void validationForCreate(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
-
-	}
-
-	private UserProfile create(EntityManager entityManager, Long userId, PlainUserProfile plainUserProfile) {
 		UserProfile userProfile = new UserProfile();
 
 		userProfile.setName(plainUserProfile.getName());
@@ -126,22 +110,29 @@ public class UserProfileService implements IUserProfileService {
 		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
 		
-		User user = entityManager.find(User.class, userId);
+		User user = userCrud.findById(userId).get();
 		userProfile.setUser(user);
 		
-		entityManager.persist(userProfile);
+		userProfileCrud.save(userProfile);
 		
-		//createComments(entityManager, plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
+		//createComments(plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
+		
+		PlainUserProfile result = Converter.toPlainUserProfile(userProfile);
+		
+		return result;
+	}
 
-		return userProfile;
+	// TODO: implement method
+	private void validationForCreate(Long userId, PlainUserProfile plainUserProfile) {
+
 	}
 	
-	private List<Comment> createComments(EntityManager entityManager, Collection<PlainComment> plainComments) {
+/*	private List<Comment> createComments(EntityManager entityManager, Collection<PlainComment> plainComments) {
 		return plainComments.stream().map(plainComment -> {
 			Comment comment = new Comment();
 			entityManager.persist(comment);
 			return comment;
 		}).collect(Collectors.toList());
-	}
+	}*/
 
 }

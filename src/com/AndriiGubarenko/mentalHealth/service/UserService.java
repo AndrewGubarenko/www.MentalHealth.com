@@ -2,62 +2,59 @@ package com.AndriiGubarenko.mentalHealth.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.User;
+import com.AndriiGubarenko.mentalHealth.repositories.UserCrud;
 
 @Component("userService")
-public class UserService {
+public class UserService implements IUserService {
 	
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private UserCrud crud;
 	
+	@Override
 	@Transactional
 	public User create(User user) {
+		crud.save(user);
+		
 		User result = new User();
 		result.setId(user.getId());
 		result.setLogin(user.getLogin());
 		
-		entityManager.persist(user);
-		
 		return result;
 	}
 	
+
+	@Override
 	@Transactional
 	public User findUserByLoginAndPassword(String login, String password) {
-		List<User> users = entityManager
-				.createQuery("SELECT user FROM User user WHERE user.login = :login AND user.password = :password", User.class)
-				.setParameter("login", login)
-				.setParameter("password", password).getResultList();
+		List<User> users = crud.findByLoginAndPassword(login, password);		
+
 		return users.size() == 1 ? users.get(0) : null;
 	}
 	
 	//TODO: implement correct return statement 
+	@Override
 	@Transactional
 	public String remove(Long userId) {
-		validationForRemove(entityManager, userId);
-		authorizationForRemove(entityManager, userId);
+		validationForRemove(userId);
+		authorizationForRemove(userId);
 		
-		User user = entityManager.find(User.class, userId);
-		user.getUserProfile().removeAllComments();
-		entityManager.remove(user.getUserProfile());
-		entityManager.remove(user);
+		crud.deleteById(userId);
 		
-		String result = "Your profile was completely removed";
-		return result;
+		return "Your profile was completely removed";
 	}
 	
 	// TODO: implement method
-	private void validationForRemove(EntityManager entityManager, Long userId) {
+	private void validationForRemove(Long userId) {
 
 	}
 
 	// TODO: implement method
-	private void authorizationForRemove(EntityManager entityManager, Long userId) {
+	private void authorizationForRemove(Long userId) {
 
 	}
 }

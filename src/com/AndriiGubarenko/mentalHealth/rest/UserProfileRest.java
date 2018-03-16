@@ -1,8 +1,8 @@
 package com.AndriiGubarenko.mentalHealth.rest;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,18 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AndriiGubarenko.mentalHealth.rest.aspect.Authenticational;
-import com.AndriiGubarenko.mentalHealth.rest.utils.AuthenticationUtils;
 import com.AndriiGubarenko.mentalHealth.service.IUserProfileService;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 
 @RestController
 public class UserProfileRest {
 	
-	@Resource(name = "userProfileService")
+	@Autowired
 	private IUserProfileService userProfileService;
-	
-	@Resource(name = "authenticationUtils")
-	private AuthenticationUtils authenticationUtils;
 	
 	private Long userId;
 

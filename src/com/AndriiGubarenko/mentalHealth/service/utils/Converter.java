@@ -46,4 +46,17 @@ public class Converter {
 		
 		return plainComment;
 	}
+	
+/*	public static PlainUserListRepresentation toPlain(UserListRepresentation userListRepresentation) {
+		PlainUserListRepresentation result = new PlainUserListRepresentation();
+		
+		result.setByName(userListRepresentation.getByName());
+		result.setBySurname(userListRepresentation.getBySurname());
+		result.setBySpeciality(userListRepresentation.getBySpeciality());
+		result.setByLocation(userListRepresentation.getByLocation());
+		result.setByPrice(userListRepresentation.getByPrice());
+		result.setByCurrency(userListRepresentation.getByCurrency());
+		
+		return result;
+	}*/
 }
