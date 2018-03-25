@@ -1,5 +1,5 @@
 import userReducer from './user/UserReducer';
-import commentReducer from './comment/CommentReducer'
+import commentReducer from './server/comment/CommentReducer'
 import commentTreeReducer from './ui/commentTree/CommentTreeReducer'
 
 let startState = {
@@ -7,7 +7,7 @@ let startState = {
 
   },
   ui: {
-    
+
   }
 };
 

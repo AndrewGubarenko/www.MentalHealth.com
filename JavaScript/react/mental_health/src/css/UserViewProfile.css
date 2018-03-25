@@ -33,6 +33,15 @@
   color: #037492;
 }
 
+#location {
+  position: relative;
+  left: 490px;
+  bottom: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #location;
+}
+
 #photoContainerView {
   position: relative;
   left: 200px;
@@ -279,20 +288,7 @@
   box-shadow: 5px 5px 10px #037492;
 }
 
-.sub_comment_box {
-  margin-left: 50px;
-  margin-top: 10px;
-  box-shadow: 5px 5px 10px #02364c;
-}
-
-#buttonContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.dropdown-btn {
+.answer-btn {
   border: 1px solid #02364c;
   border-radius: 5px;
   display:inline-block;
@@ -309,39 +305,13 @@
   cursor: pointer
 }
 
-.dropdown-btn:hover {
+.answer-btn:hover {
   box-shadow: 0 0 2px #00CCCC;
 }
 
-.dropdown-btn:active {
+.answer-btn:active {
   box-shadow: 0 1px 0 rgba(105, 105, 105, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset;
 	transform: translatey(1px);
-}
-
-.dropdown-btn:active ~ #dropdown-menu {
-  box-shadow: 5px 5px 10px #999999;
-  display: block;
-}
-
-#dropdown-menu {
-  display: none;
-  position: absolute;
-  width: 50px;
-  height: 25px;
-  list-style: none;
-  background-color:#ededed;
-  border:1px solid #02364c;
-  border-radius: 5px;
-  font-size:15px;
-  padding: 0px 5px 0px 5px;
-  text-decoration:none;
-  text-align: center;
-  margin-top: 10px;
-  cursor: pointer
-}
-
-.dropdown-item {
-
 }
 
 .roll-down {
@@ -360,6 +330,13 @@
 /*===============COMMENTS==============================*/
 
 /*===============BUTTON ADD COMMENT====================*/
+#buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
 #button {
   position: relative;
 	border-left: 2px solid #33CCFF;
@@ -372,8 +349,7 @@
 }
 
 #button:active {
-  top: -2px;
-  left: 2px;
+  transform: translatey(1px);
 }
 
 #inscription {

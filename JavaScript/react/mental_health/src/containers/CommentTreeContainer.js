@@ -1,11 +1,33 @@
 import React from 'react';
 import CommentTree from './../components/CommentTree';
 import {connect} from 'react-redux';
+import {commentByIdStateType} from './../store/server/comment/CommentReducer';
+import {commentService} from './../appContext/Context';
+import {setCommentById} from './../store/server/comment/CommentActions';
 
 class CommentTreeContainer extends React.Component {
+
+  componentDidMount() {
+    let commentByIdState  = this.props.commentByIdState;
+
+    if (commentByIdState !== commentByIdStateType.empty
+      && commentByIdState !== commentByIdStateType.outOfDate) {
+        return;
+      }
+      commentService.getList(this.props.id).then((data) => data.json()).then(commentList => {
+        let commentById = {};
+        commentList.forEach(comment => {
+          commentById[comment.id] = comment;
+        });
+        this.props.dispatch(setCommentById(commentById));
+      });
+  }
+
   render() {
     return(
-      <CommentTree commentById={this.props.commentById}/>
+      <CommentTree
+        {...this.props}
+        indent={20}/>
     );
   }
 }
@@ -13,26 +35,17 @@ class CommentTreeContainer extends React.Component {
 const mapStateToProps = (state) => {
   var commentById = {};
 
-  Object.getOwnPropertyNames(state.server.commentList.commentById).forEach(id => {
-    let comment = state.server.commentList.commentById[id];
-    let expandType = state.ui.commentTree.expandStateOfCommentById[id];
-    commentById[id] = Object.assign({}, comment, {
-      expandType: expandType,
-      childsIds: []
+  Object.values(state.server.commentList.commentById).forEach(comment => {
+    let uiPartOfComment = state.ui.commentTree.uiPartOfCommentById[comment.id];
+    commentById[comment.id] = Object.assign({}, comment, {
+      expandType: uiPartOfComment.expandType
     });
   });
 
-  Object.getOwnPropertyNames(commentById).forEach(id => {
-    let comment = commentById[id];
-    if(comment.parentId) {
-      let parent = commentById[comment.parentId];
-      parent.childsIds.push(comment.id);
-    }
-  });
-
   return {
-    commentById
+    commentById,
+    commentByIdState: state.server.commentList.state
   };
 }
 
-export default connect(mapStateToProps) (CommentTreeContainer);
+export default connect(mapStateToProps)(CommentTreeContainer);

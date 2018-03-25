@@ -1,66 +1,80 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {setIsAuthenticated} from './../store/user/UserActions';
 
 const expandType = {
   isExpanded: "isExpanded",
-  isNotExpanded: "isNotExpanded"
+  isNotExpanded: "isNotExpanded",
+  canNotBeExpanded: "canNotBeExpanded"
 }
 
-const getExpandSpan = (expandType) => {
-  if(expandType === "isExpanded") {
+const createAnswerButton = (props) => {
+  if(props.isAuthenticated) {
     return(
-      <span className="roll-up">&#5123;</span>
-    );
-  }
-
-  if(expandType === "isNotExpanded") {
-    return(
-      <span className="roll-down">&#5121;</span>
-    );
-  }
-  return null;
-}
-
-const dropDown = (name) => {
-  //let a = document.getElementById("dropdown-menu");
-  // if ( a.style.display == 'none' )
-  //   a.style.display = 'block';
-  // else
-  //   if ( a.style.display == 'block' )
-  //   a.style.display = 'none';
-}
-
-const Comment = ({name, comment, commentIsVisible, expandType}) => {
-  return(
-    <div>
-      <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: "5px"}}>
-        <div style={{width: "20px", fontSize: "7pt"}}>
-          {getExpandSpan(expandType)}
-        </div>
-        <div style={{flexGrow: 1}}>
-          <span className="font-weight-bold" style={{cursor: "pointer"}}>
-            {name}
-          </span>
-        </div>
-
-        <div style={{width: "30px"}}>
-          <div className="dropdown-btn-group" role="group">
-            <a className="dropdown-btn" onClick={dropDown()}>&#5121;</a>
-              <ul id="dropdown-menu">
-                <li className="dropdown-item">Reply</li>
-              </ul>
-          </div>
-        </div>
-
+      <div style={{width: "60px"}}>
+        <a className="answer-btn">Answer</a>
       </div>
-      {
-        commentIsVisible ? (
-          <div style={{marginLeft: "20px", marginRight: "50px", color: "grey", fontStyle: "italic"}}>
-            {comment}
-          </div>
-        ): undefined}
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default Comment;
-export {expandType};
+class Comment extends React.Component {
+  getExpandSpan(expandType) {
+    if(expandType === "isExpanded") {
+      return(
+        <span className="roll-up">&#5123;</span>
+      );
+    }
+
+    if(expandType === "isNotExpanded") {
+      return(
+        <span className="roll-down">&#5121;</span>
+      );
+    }
+
+    if(expandType === "canNotBeExpanded") {
+      return null;
+    }
+
+    return null;
+  }
+
+  render() {
+    const {name, commentIsVisible, comment, expandType} = this.props;
+      return(
+        <div>
+          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: "5px"}}>
+            <div style={{width: "20px", fontSize: "7pt"}}>
+              {this.getExpandSpan(expandType)}
+            </div>
+            <div style={{flexGrow: 1, marginRight: "30px"}}>
+              <span style={{cursor: "pointer"}}>
+                {name}
+              </span>
+            </div>
+            {createAnswerButton(this.props)}
+          </div>
+          {commentIsVisible ? (
+              <div style={{marginLeft: "20px", marginRight: "50px", color: "grey", fontStyle: "italic"}}>
+                {comment}
+              </div>
+            ): undefined}
+        </div>
+      );
+    };
+  }
+
+  const mapStateToProps = (state) => {
+    let props = {
+      isAuthenticated: state.server.user.isAuthenticated
+    };
+    return props;
+  };
+
+  //function
+  let reduxContainerCreator = connect(mapStateToProps);
+  //React component class
+  let ReduxComment = reduxContainerCreator(Comment);
+
+  export default ReduxComment;
+  export {expandType};

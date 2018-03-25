@@ -1,10 +1,13 @@
 package com.AndriiGubarenko.mentalHealth.rest;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,10 +21,15 @@ public class CommentRest {
 	@Autowired
 	private ICommentService commentService;
 	
-	@RequestMapping(path = "/userProfile/comment", method = RequestMethod.POST)
-	public ResponseEntity<PlainComment> create(HttpServletRequest request, @RequestBody PlainComment plainComment) {
-		Long userProfileId = plainComment.getUserProfileId();
-		PlainComment result = commentService.create(userProfileId, plainComment);
+	@RequestMapping(path = "/UserViewPage/{id}", method = RequestMethod.POST)
+	public ResponseEntity<PlainComment> create(HttpServletRequest request, @RequestBody PlainComment plainComment, @PathVariable Long id) {
+		PlainComment result = commentService.create(id, plainComment);
+		return new ResponseEntity<>(result, HttpStatus.OK);	
+	}
+	
+	@RequestMapping(path = "/UserViewPage/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<PlainComment>> getList(HttpServletRequest request, @PathVariable Long id) {
+		List<PlainComment> result = commentService.getList(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);	
 	}
 }

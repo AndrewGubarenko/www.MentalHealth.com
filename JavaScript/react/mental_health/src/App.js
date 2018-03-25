@@ -11,8 +11,7 @@ import './css/FormStyle.css';
 
 import {HashRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import store from './store/Store';
-
+import {store} from './appContext/Context';
 import {setIsAuthenticated} from './store/user/UserActions';
 
 class App extends React.Component {
@@ -20,14 +19,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     let token = localStorage.getItem("token");
-    let isAuthenticated;
-    if(token) {
-      isAuthenticated = true;
-    } else {
-      isAuthenticated = false;
-    }
-    let action = setIsAuthenticated(isAuthenticated);
-    store.dispatch(action);
+    store.dispatch(setIsAuthenticated(token !== null));
   }
 
   render() {
@@ -43,7 +35,7 @@ class App extends React.Component {
             <Route exact path="/registration" component={RegistrationContainer} />
             <Route exact path="/authentication" component={AuthenticationContainer} />
 
-            <Route exact path="/UserViewPage" component={UserViewPage} />
+            <Route exact path="/UserViewPage/:id" component={UserViewPage} />
             <Route exact path="/MainPage" component={MainPage} />
 
             <Route exact path="/UserEditor/new/" component={UserEditorPage} />

@@ -43,8 +43,18 @@ public class Converter {
 		plainComment.setVisitorName(comment.getVisitorName());
 		plainComment.setCommentText(comment.getCommentText());
 		plainComment.setRating(comment.getRating());
-		
+		plainComment.setUserProfileId(comment.getUserProfile().getId());
+		plainComment.setChildIds(comment.getChildren().stream().map(child -> child.getId()).collect(Collectors.toSet()));
+		setParentId(plainComment, comment.getParent());
 		return plainComment;
+	}
+	
+	private static void setParentId(PlainComment target, Comment parent) {
+		if (parent == null) {
+			target.setParentId(null);
+		} else {
+			target.setParentId(parent.getId());
+		}
 	}
 	
 /*	public static PlainUserListRepresentation toPlain(UserListRepresentation userListRepresentation) {

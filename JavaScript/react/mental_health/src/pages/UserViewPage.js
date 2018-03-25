@@ -3,6 +3,15 @@ import './../css/UserViewProfile.css';
 import CommentTreeContainer from './../containers/CommentTreeContainer';
 
 export default class UserViewProfile extends React.Component {
+  getMode() {
+    if(this.props.match.path === "/UserViewPage/comment/:parentId?") {
+      return "new";
+    }
+    if(this.props.match.path === "/UserViewPage/:id") {
+      return "view";
+    }
+    throw new Error("Unknown url!");
+  }
 
   render() {
     return(
@@ -140,7 +149,11 @@ export default class UserViewProfile extends React.Component {
             </section>
           </div>
 
-          <CommentTreeContainer />
+          <CommentTreeContainer
+            history={this.props.history}
+            mode={this.getMode()}
+            id={this.props.match.params.id}
+            parentId={this.props.match.params.parentId} />
 
           <div className="line"/>
 
