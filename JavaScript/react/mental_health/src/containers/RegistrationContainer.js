@@ -26,7 +26,7 @@ export default class RegistrationContainer extends React.Component {
       return response.text();
     }).then(token => {
       localStorage.setItem("token", token);
-      this.props.history.push("/UserEditor/new/");
+      this.props.history.push("/UserEditor/new");
     });
   }
 

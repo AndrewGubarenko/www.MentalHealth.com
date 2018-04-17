@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setIsAuthenticated} from './../store/user/UserActions';
 
 const expandType = {
   isExpanded: "isExpanded",
@@ -8,7 +7,7 @@ const expandType = {
   canNotBeExpanded: "canNotBeExpanded"
 }
 
-const createAnswerButton = (props) => {
+const createControlElement = (props) => {
   if(props.isAuthenticated) {
     return(
       <div style={{width: "60px"}}>
@@ -52,7 +51,7 @@ class Comment extends React.Component {
                 {name}
               </span>
             </div>
-            {createAnswerButton(this.props)}
+            {createControlElement(this.props)}
           </div>
           {commentIsVisible ? (
               <div style={{marginLeft: "20px", marginRight: "50px", color: "grey", fontStyle: "italic"}}>

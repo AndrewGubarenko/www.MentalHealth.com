@@ -1,6 +1,6 @@
 import React from 'react';
-import Rating from './Rating';
 import './../css/UserEditor.css';
+import './../css/button.css';
 
 export default class UserEditor extends React.Component {
 
@@ -63,11 +63,6 @@ export default class UserEditor extends React.Component {
           </div>
 
           <div className="FormStyle-block">
-            <label className="form-label">Rating:</label>
-            <Rating />
-          </div>
-
-          <div className="FormStyle-block">
             <label className="form-label">Phone number:</label>
             <input className="form-control" type="tel" placeholder="+380-000-00-00" onChange={this.props.onChangePhoneNumber} value={this.props.phoneNumber} />
           </div>
@@ -89,10 +84,31 @@ export default class UserEditor extends React.Component {
 
           <div className="FormStyle-block">
             <label className="form-label">Skype:</label>
-            <input className="form-control" type="href" placeholder="Your nickname in Skype" onChange={this.props.onChangeSkype} value={this.props.skype} />
+            <input className="form-control" type="text" placeholder="Your nickname in Skype" onChange={this.props.onChangeSkype} value={this.props.skype} />
           </div>
 
-          <button type="button" className="Button" onClick={this.props.onClickSave}>Save</button>
+          <div className="FormStyle-block">
+            <label className="form-label">University:</label>
+            <input className="form-control" type="href" placeholder="University of your education" onChange={this.props.onChangeUniversity} value={this.props.university} />
+          </div>
+
+          <div>
+            <div id="diplomaContainer">
+              <img id="userDiploma" alt="" />
+            </div>
+            <div className="file-load-button">
+            	<input type="file" id="inputImage" onChange={this.props.onChangeUserDiploma} />
+            	<button id="uploadButton">Upload</button>
+            </div>
+          </div>
+
+            <div id="buttonContainer" style={{float: "right", marginRight: "60px"}}>
+              <div id="button" onClick={this.props.onClickSave}>
+                <div id="inscription" style={{fontWeight: "500"}}>Save</div>
+                <div id="bottom-border"></div>
+                <div id="right-border"></div>
+              </div>
+            </div>
 
         </div>
     );

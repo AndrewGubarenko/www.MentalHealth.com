@@ -26,6 +26,7 @@ public class Converter {
 		plainUserProfile.setLinkedin(userProfile.getLinkedin());
 		plainUserProfile.setFacebook(userProfile.getFacebook());
 		plainUserProfile.setSkype(userProfile.getSkype());
+		plainUserProfile.setUniversity(userProfile.getUniversity());
 		plainUserProfile.setUserId(userProfile.getUser().getId());
 		
 		plainUserProfile.setCommentIds(userProfile.getCommentList().stream().map(Converter::toPlainComment).collect(Collectors.toSet()));

@@ -2,14 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Comment from './Comment';
 import {expandType} from './Comment';
-import {setIsAuthenticated} from './../store/user/UserActions';
 
 const createCommentButton = (props) => {
   if(!props.isAuthenticated) {
     return(
       <div id="buttonContainer">
         <div id="button">
-          <div id="inscription"><span id="plus">+</span>New comment</div>
+          <div id="inscription">
+            <span id="plus" style={{color: "#009999", fontSize: "18px", marginRight: "5px"}}>+</span>
+            New comment</div>
           <div id="bottom-border"></div>
           <div id="right-border"></div>
         </div>

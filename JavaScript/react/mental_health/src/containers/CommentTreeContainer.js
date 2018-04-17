@@ -2,7 +2,7 @@ import React from 'react';
 import CommentTree from './../components/CommentTree';
 import {connect} from 'react-redux';
 import {commentByIdStateType} from './../store/server/comment/CommentReducer';
-import {commentService} from './../appContext/Context';
+import {visitorService} from './../appContext/Context';
 import {setCommentById} from './../store/server/comment/CommentActions';
 
 class CommentTreeContainer extends React.Component {
@@ -14,7 +14,9 @@ class CommentTreeContainer extends React.Component {
       && commentByIdState !== commentByIdStateType.outOfDate) {
         return;
       }
-      commentService.getList(this.props.id).then((data) => data.json()).then(commentList => {
+      visitorService.getFullProfile(this.props.id).then(data => data.json()).then(dataList => {
+        return dataList[1];
+      }).then(commentList => {
         let commentById = {};
         commentList.forEach(comment => {
           commentById[comment.id] = comment;

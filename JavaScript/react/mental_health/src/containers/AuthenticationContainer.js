@@ -23,13 +23,12 @@ class AuthenticationContainer extends React.Component {
 
   onClickEnter = () => {
     userService.authentication(this.state).then(response => {
+      console.log(response.id);
       return response.text();
     }).then(text => {
-      console.log(text);
         localStorage.setItem("token", text);
         this.props.dispatch(setIsAuthenticated(true));
-        //Clarify about id or put the User name to path
-        this.props.history.push("/UserEditor/edit/id");
+        this.props.history.push("/UserViewPage/" + this.props.id);
     });
   }
 
@@ -48,7 +47,8 @@ class AuthenticationContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   let props = {
-    isAuthenticated: state.server.user.isAuthenticated
+    isAuthenticated: state.server.user.isAuthenticated,
+    id: 6
   };
   return props;
 };

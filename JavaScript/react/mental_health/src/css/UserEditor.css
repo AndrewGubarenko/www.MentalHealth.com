@@ -27,6 +27,7 @@
   background: #DCDCDC;
   width: 200px;
   height: 250px;
+  margin-top: 25px;
   margin-left: 360px;
   float: bottom;
   border: 1px solid grey;
@@ -42,10 +43,30 @@
 	border-radius: 20px;
 }
 
+#diplomaContainer {
+  background: #DCDCDC;
+  width: 400px;
+  height: 250px;
+  margin-left: 165px;
+  margin-top: 25px;
+  float: bottom;
+  border: 1px solid grey;
+  border-radius: 20px;
+  background-image: url(../icons/diploma.png);
+  background-size: 400px 250px;
+}
+
+#userDiploma {
+  position: relative;
+  width: 400px;
+  height: 250px;
+	border-radius: 20px;
+}
+
 /*	=	File Load */
 /* Стили для контейнера */
 .file-load-button {
-  margin: 30px auto 50px 450px;
+  margin: 30px auto 50px 455px;
 	width: 310px;
 	height: 45px;
 	overflow: hidden;

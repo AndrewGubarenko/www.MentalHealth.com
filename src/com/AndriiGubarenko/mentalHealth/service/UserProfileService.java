@@ -45,6 +45,7 @@ public class UserProfileService implements IUserProfileService {
 		userProfile.setLinkedin(plainUserProfile.getLinkedin());
 		userProfile.setFacebook(plainUserProfile.getFacebook());
 		userProfile.setSkype(plainUserProfile.getSkype());
+		userProfile.setUniversity(plainUserProfile.getUniversity());
 		
 		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
@@ -106,6 +107,7 @@ public class UserProfileService implements IUserProfileService {
 		userProfile.setLinkedin(plainUserProfile.getLinkedin());
 		userProfile.setFacebook(plainUserProfile.getFacebook());
 		userProfile.setSkype(plainUserProfile.getSkype());
+		userProfile.setUniversity(plainUserProfile.getUniversity());
 		
 		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
 		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());

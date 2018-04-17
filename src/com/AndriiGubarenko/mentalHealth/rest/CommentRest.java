@@ -1,7 +1,5 @@
 package com.AndriiGubarenko.mentalHealth.rest;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +20,17 @@ public class CommentRest {
 	private ICommentService commentService;
 	
 	@RequestMapping(path = "/UserViewPage/{id}", method = RequestMethod.POST)
-	public ResponseEntity<PlainComment> create(HttpServletRequest request, @RequestBody PlainComment plainComment, @PathVariable Long id) {
+	public ResponseEntity<PlainComment> create(HttpServletRequest request, 
+			@RequestBody PlainComment plainComment, 
+			@PathVariable Long id) {
 		PlainComment result = commentService.create(id, plainComment);
 		return new ResponseEntity<>(result, HttpStatus.OK);	
 	}
 	
-	@RequestMapping(path = "/UserViewPage/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<PlainComment>> getList(HttpServletRequest request, @PathVariable Long id) {
-		List<PlainComment> result = commentService.getList(id);
-		return new ResponseEntity<>(result, HttpStatus.OK);	
-	}
+//	@RequestMapping(path = "/UserViewPage/{id}", method = RequestMethod.GET)
+//	public ResponseEntity<List<PlainComment>> getList(HttpServletRequest request, 
+//			@PathVariable Long id) {
+//		List<PlainComment> result = commentService.getList(id);
+//		return new ResponseEntity<>(result, HttpStatus.OK);	
+//	}
 }

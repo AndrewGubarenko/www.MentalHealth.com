@@ -19,7 +19,7 @@ export default class UserEditorPage extends React.Component {
         history={this.props.history}
         mode={this.getMode()}
         id={this.props.match.params.id}
-        />
+      />
     );
   }
 }

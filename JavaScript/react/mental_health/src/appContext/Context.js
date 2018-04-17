@@ -1,4 +1,5 @@
 import UserService from './../services/userService';
+import VisitorService from './../services/visitorService';
 import UserEditorService from './../services/userEditorService';
 import CommentService from './../services/CommentService';
 import FormatDateUtils from './../utils/formatDateUtils';
@@ -10,9 +11,10 @@ const store = createStore(mainReducer);
 
 const startUrl = "http://localhost:8080/MentalHealth/";
 const userService = new UserService(startUrl);
+const visitorService = new VisitorService(startUrl);
 const userEditorService = new UserEditorService(startUrl);
 const commentService = new CommentService(startUrl);
 const formatDateUtils = new FormatDateUtils();
 const imageUploader = new ImageUploader();
 
-export {userService, userEditorService, formatDateUtils, imageUploader, store, commentService};
+export {userService, userEditorService, formatDateUtils, imageUploader, store, commentService, visitorService};

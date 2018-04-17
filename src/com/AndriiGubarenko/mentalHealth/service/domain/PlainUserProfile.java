@@ -23,6 +23,7 @@ public class PlainUserProfile {
 	private String linkedin;
 	private String facebook;
 	private String skype;
+	private String university;
 	private String userPhoto;
 	private String userDiploma;
 	private Long userId;
@@ -183,5 +184,13 @@ public class PlainUserProfile {
 
 	public void setCommentIds(Set<PlainComment> commentIds) {
 		this.commentIds = commentIds;
+	}
+
+	public String getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(String university) {
+		this.university = university;
 	}
 }

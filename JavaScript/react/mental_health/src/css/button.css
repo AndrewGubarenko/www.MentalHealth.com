@@ -1,0 +1,76 @@
+/*===============BUTTON====================*/
+#buttonContainer {
+	--buttonFloat: none;
+	margin: 10px;
+	font-family: sans-serif;
+  outline: none;
+  float: var(--buttonFloat);
+}
+
+#button {
+	--buttonColor: #33CCFF;
+	border-left: 2px solid var(--buttonColor);
+	border-top: 2px solid var(--buttonColor);
+	width: 170px;
+	height: 30px;
+	padding: 5px;
+  margin: 5px;
+	/* transition: 0.75s; */
+}
+
+#button:active {
+  transform: scale(0.9, 0.9);
+}
+
+#inscription {
+  text-align: center;
+  width: 161px;
+	height: 21px;
+	font-size: 16px;
+	color: var(--buttonColor);
+	position: relative;
+	top: 5px;
+	transition: 0.75s;
+	overflow: hidden;
+}
+
+#bottom-border {
+  position: fixed;
+	width: 150px;
+	border-bottom: 2px solid var(--buttonColor);
+	position: relative;
+	top: 12px;
+	right: 5px;
+	transition: 0.75s;
+}
+
+#right-border {
+  position: fixed;
+	border-right: 2px solid var(--buttonColor);
+	height: 20px;
+	position: relative;
+	left: 5px;
+	bottom: 30px;
+	transition: 0.75s;
+}
+
+#button:hover {
+	background-color: #99CCFF;
+	transition: 1s;
+}
+
+#button:hover #inscription {
+	color: white;
+	transition: 0.75s;
+}
+
+#button:hover #bottom-border {
+	width: 180px;
+	transition: 0.75s;
+}
+
+#button:hover #right-border {
+	height: 40px;
+	transition: 0.75s;
+}
+/*===============BUTTON====================*/

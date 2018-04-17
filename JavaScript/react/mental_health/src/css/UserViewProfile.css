@@ -18,6 +18,7 @@
 
 #name {
   position: relative;
+  width: 300px;
   top: 250px;
   left: 450px;
   font-size: 36px;
@@ -26,6 +27,7 @@
 
 #speciality {
   position: relative;
+  width: 200px;
   left: 470px;
   bottom: 200px;
   font-size: 24px;
@@ -35,6 +37,7 @@
 
 #location {
   position: relative;
+  width: 200px;
   left: 490px;
   bottom: 200px;
   font-size: 20px;
@@ -57,6 +60,7 @@
 }
 
 #userPhotoView {
+  position: relative;
   width: 200px;
   height: 200px;
 	border-radius: 20px;
@@ -66,19 +70,14 @@
 
 
 #data_container {
-/*  border: 1px solid red;*/
-  padding-bottom: 50px;
-  overflow: auto;
-  box-sizing: border-box;
+  /* border: 1px solid red; */
 }
 
 .line {
-  margin: 50px auto auto 10%;
+  margin: 50px auto 50px 10%;
   width: 80%;
   border-bottom: 2px solid #e2cf11;
   box-sizing: border-box;
-  float: left;
-  display: inline-block;
   overflow: auto;
 }
 
@@ -114,6 +113,9 @@
   animation-fill-mode: both;
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+}
+.respond {
+  min-height: 18px;
 }
 /* Описываем анимацию свойства opacity */
 
@@ -153,7 +155,7 @@
 }
 /* Шрифт-иконки от Font Awesome в формате Unicode */
 .tabs>label:before {
-  font-family: fontawesome;
+  /* font-family: fontawesome; */
   font-weight: normal;
   margin-right: 10px;
 }
@@ -173,7 +175,7 @@
 /* Изменения стиля переключателей вкладок при наведении */
 .tabs>label:hover {
   color: #e2cf11;
-  transition: 500ms;
+  /* transition: 500ms; */
   cursor: pointer;
 }
 /* Стили для активной вкладки */
@@ -248,7 +250,7 @@
 #diplomaScreenContainerView {
   margin: 30px auto;
   width: 400px;
-  height: 300px;
+  height: 250px;
   background: #DCDCDC;
   border: 1px solid #037492;
   border-radius: 20px;
@@ -258,8 +260,12 @@
   box-shadow: 0 0 10px grey;
 }
 
-#diplomaScreenPhotoViev {
-
+#diplomaScreenView {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  border: none;
 }
 
 /*===============USER DATAS============================*/
@@ -328,80 +334,3 @@
   margin-right: 5px;
 }
 /*===============COMMENTS==============================*/
-
-/*===============BUTTON ADD COMMENT====================*/
-#buttonContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-#button {
-  position: relative;
-	border-left: 2px solid #33CCFF;
-	border-top: 2px solid #33CCFF;
-	width: 170px;
-	height: 30px;
-	padding: 5px;
-  margin: 5px;
-	transition: 0.75s;
-}
-
-#button:active {
-  transform: translatey(1px);
-}
-
-#inscription {
-	font-size: 16px;
-	margin-left: 20px;
-	color: #33CCFF;
-	position: relative;
-	top: 2px;
-	transition: 0.75s;
-}
-
-#plus {
-	color: #009999;
-	font-size: 18px;
-  margin-right: 5px;
-}
-
-#bottom-border {
-	width: 150px;
-	border-bottom: 2px solid #33CCFF;
-	position: relative;
-	top: 12px;
-	right: 5px;
-	transition: 0.75s;
-}
-
-#right-border {
-	border-right: 2px solid #33CCFF;
-	height: 20px;
-	position: relative;
-	left: 5px;
-	bottom: 30px;
-	transition: 0.75s;
-}
-
-#button:hover {
-	background-color: #99CCFF;
-	transition: 1s;
-}
-
-#button:hover #inscription {
-	color: white;
-	transition: 0.75s;
-}
-
-#button:hover #bottom-border {
-	width: 180px;
-	transition: 0.75s;
-}
-
-#button:hover #right-border {
-	height: 40px;
-	transition: 0.75s;
-}
-/*===============BUTTON ADD COMMENT====================*/

@@ -78,6 +78,9 @@ public class UserProfile {
 	@Column(name = "SKYPE")
 	private String skype;
 	
+	@Column(name = "UNIVERSITY")
+	private String university;
+	
 	@Column(name = "USER_PHOTO")
 	@Lob
 	private byte[] userPhoto;
@@ -316,5 +319,13 @@ public class UserProfile {
 			return false;
 		}
 		return true;
+	}
+
+	public String getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(String university) {
+		this.university = university;
 	}
 }

@@ -4,7 +4,7 @@ export default class CommentService {
   }
 
   create(comment, id) {
-    return fetch(this.startUrl + "UserViewPage" + id, {
+    return fetch(this.startUrl + "UserViewPage/" + id, {
       method: "post",
       headers: new Headers({
         "Content-type": "application/json;chartSet=UTF-8"

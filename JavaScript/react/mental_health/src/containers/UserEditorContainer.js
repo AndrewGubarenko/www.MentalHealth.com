@@ -1,6 +1,6 @@
 import React from 'react';
 import UserEditor from './../components/UserEditor';
-import {formatDateUtils, userEditorService, imageUploader} from './../appContext/Context'
+import {formatDateUtils, userEditorService, imageUploader} from './../appContext/Context';
 
 export default class UserEditorContainer extends React.Component {
   constructor(props) {
@@ -21,6 +21,7 @@ export default class UserEditorContainer extends React.Component {
       linkedin: "",
       facebook: "",
       skype: "",
+      university: "",
       userPhoto: "",
       userDiploma: ""
     };
@@ -33,8 +34,8 @@ export default class UserEditorContainer extends React.Component {
         return data.json();
       }).then(userProfile => {
 
-        let image = document.querySelector("#userPhoto");
-        imageUploader.imageMount(userProfile.userPhoto, image);
+        imageUploader.imageMount(userProfile.userPhoto, document.querySelector("#userPhoto"));
+        imageUploader.imageMount(userProfile.userDiploma, document.querySelector("#userDiploma"));
 
         let result = Object.assign({}, userProfile, {
           experience:formatDateUtils.formatToHtmlDateInput(new Date(userProfile.experience)),
@@ -101,12 +102,23 @@ export default class UserEditorContainer extends React.Component {
     this.setState({skype: event.target.value});
   }
 
+  onChangeUniversity = (event) => {
+    this.setState({university: event.target.value});
+  }
+
   onChangeUserPhoto = (event) => {
     let image = document.querySelector("#userPhoto");
     imageUploader.imageUpload(event, image).then((result) => {
       this.setState({userPhoto: result});
     });
-}
+  }
+
+  onChangeUserDiploma = (event) => {
+    let image = document.querySelector("#userDiploma");
+    imageUploader.imageUpload(event, image).then((result) => {
+      this.setState({userDiploma: result});
+    });
+  }
 
   _getFormattedProfileToService() {
     let userProfile = {
@@ -125,6 +137,7 @@ export default class UserEditorContainer extends React.Component {
       linkedin: this.state.linkedin,
       facebook: this.state.facebook,
       skype: this.state.skype,
+      university: this.state.university,
       userPhoto: this.state.userPhoto,
       userDiploma: this.state.userDiploma
     };
@@ -135,12 +148,12 @@ export default class UserEditorContainer extends React.Component {
     let userProfile = this._getFormattedProfileToService();
     if(this.props.mode === "new") {
       userEditorService.create(userProfile).then(() => {
-        this.props.history.goBack();
+        this.props.history.push("/UserViewPage/" + this.props.id);
       });
     }
     if(this.props.mode === "edit") {
       userEditorService.update(userProfile).then(() => {
-        this.props.history.goBack();
+        this.props.history.push("/UserViewPage/" + this.props.id);
       });
     }
   }
@@ -178,6 +191,10 @@ export default class UserEditorContainer extends React.Component {
         onChangeSkype={this.onChangeSkype}
         userPhoto={this.state.userPhoto}
         onChangeUserPhoto={this.onChangeUserPhoto}
+        university={this.state.university}
+        onChangeUniversity={this.onChangeUniversity}
+        userDiploma={this.state.userDiploma}
+        onChangeUserDiploma={this.onChangeUserDiploma}
         onClickSave={this.onClickSave}
         />
     );
