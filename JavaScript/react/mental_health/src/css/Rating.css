@@ -1,1 +1,68 @@
 
+/*=================================================*/
+#ratingBlock {
+  box-sizing: border-box;
+  float: right;
+  display: inline-block;
+  margin: 10px 100px 10px auto;
+  min-width: 180px;
+  max-width: 180px;
+}
+
+ul {
+  list-style: none;
+  outline: none;
+  padding: 0;
+}
+
+.rating-view {
+  display: inline-block;
+}
+
+.rating {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 10px 0;
+  list-style: none;
+  background: url('../icons/stars.png');
+}
+
+.rating li {
+  float: left;
+  height: 32px;
+}
+
+#currentStar0, #currentStar1, #currentStar2, #currentStar3, #currentStar4{
+  z-index: 1;
+  background: url('../icons/stars.png') left bottom;
+}
+
+/*==================================================*/
+
+.commentRating-view {
+  box-sizing: border-box;
+  float: right;
+  display: inline-block;
+  min-width: 90px;
+  max-width: 90px;
+}
+
+.commentRating {
+  position: relative;
+  width: 80px;
+  height: 16px;
+  margin: 5px 20px;
+  list-style: none;
+  background: url('../icons/commentStars.png');
+}
+
+.commentRating li {
+  float: left;
+  height: 16px;
+}
+
+#stars {
+  z-index: 1;
+  background: url('../icons/commentStars.png') left bottom;
+}

@@ -18,6 +18,9 @@
 
 #name {
   position: relative;
+  box-sizing: border-box;
+  float: left;
+  display: inline-block;
   width: 300px;
   top: 250px;
   left: 450px;
@@ -25,11 +28,16 @@
   color: #e2cf11;
 }
 
+#name label {
+  font: segoe print;
+}
+
 #speciality {
   position: relative;
+  box-sizing: border-box;
+  display: inline-block;
   width: 200px;
-  left: 470px;
-  bottom: 200px;
+  left: 250px;
   font-size: 24px;
   font-weight: bold;
   color: #037492;
@@ -37,16 +45,19 @@
 
 #location {
   position: relative;
+  box-sizing: border-box;
+  display: inline-block;
   width: 200px;
-  left: 490px;
-  bottom: 200px;
   font-size: 20px;
   font-weight: bold;
-  color: #location;
+  color: black;
 }
 
 #photoContainerView {
   position: relative;
+  box-sizing: border-box;
+  float: left;
+  display: inline-block;
   left: 200px;
   bottom: 130px;
   background: #DCDCDC;
@@ -74,7 +85,7 @@
 }
 
 .line {
-  margin: 50px auto 50px 10%;
+  margin: 50px auto;
   width: 80%;
   border-bottom: 2px solid #e2cf11;
   box-sizing: border-box;
@@ -86,7 +97,7 @@
 .tabs {
   /*border: 1px solid blue;*/
   width: 700px;
-  margin: 50px 0 50px 11%;
+  margin: 50px auto;
   box-sizing: border-box;
   float: left;
   display: inline-block;
@@ -274,11 +285,9 @@
 
 #comments_container {
   /*border: 1px solid green;*/
-  margin-top: 50px;
-  margin-right: 11%;
+  margin: 50px 100px;
   width: 400px;
   box-sizing: border-box;
-  float: right;
   display: inline-block;
   overflow: auto;
   padding: 10px;
@@ -294,7 +303,8 @@
   box-shadow: 5px 5px 10px #037492;
 }
 
-.answer-btn {
+#answer-btn {
+  position: absolute;
   border: 1px solid #02364c;
   border-radius: 5px;
   display:inline-block;
@@ -302,8 +312,6 @@
   font-size:15px;
   font-weight:bold;
   padding: 0px 5px 0px 5px;
-  text-decoration:none;
-  margin-top: 5px;
   /*border: solid 0.375em;
   border-image: linear-gradient(#fdfdfd, #c4c4c4) 1;*/
   box-shadow: 0 0.375em 0.5em -0.125em #808080;
@@ -311,13 +319,37 @@
   cursor: pointer
 }
 
-.answer-btn:hover {
+#answer-btn:hover {
   box-shadow: 0 0 2px #00CCCC;
 }
 
-.answer-btn:active {
+#answer-btn:active {
   box-shadow: 0 1px 0 rgba(105, 105, 105, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset;
 	transform: translatey(1px);
+}
+
+#answer-list {
+  position: absolute;
+  margin-top: 20px;
+  border: 1px solid #02364c;
+  border-radius: 5px;
+  box-shadow: 0 0.375em 0.5em -0.125em #808080;
+  background-color: #02364c;
+  display: none;
+}
+
+#answer-list li {
+  padding: 1px 5px;
+  text-align: center;
+  border-radius: 5px;
+  color: #e2cf11;
+  font-size:15px;
+  font-weight:bold;
+  cursor: pointer;
+}
+
+#answer-list li:hover {
+  background-color: #037492;
 }
 
 .roll-down {

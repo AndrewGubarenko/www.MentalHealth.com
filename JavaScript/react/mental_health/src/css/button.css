@@ -15,11 +15,7 @@
 	height: 30px;
 	padding: 5px;
   margin: 5px;
-	/* transition: 0.75s; */
-}
-
-#button:active {
-  transform: scale(0.9, 0.9);
+	transition: 0.75s;
 }
 
 #inscription {
@@ -55,7 +51,7 @@
 }
 
 #button:hover {
-	background-color: #99CCFF;
+	background-color: var(--buttonColor);
 	transition: 1s;
 }
 

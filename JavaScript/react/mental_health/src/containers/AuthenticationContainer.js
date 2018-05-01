@@ -23,7 +23,6 @@ class AuthenticationContainer extends React.Component {
 
   onClickEnter = () => {
     userService.authentication(this.state).then(response => {
-      console.log(response.id);
       return response.text();
     }).then(text => {
         localStorage.setItem("token", text);

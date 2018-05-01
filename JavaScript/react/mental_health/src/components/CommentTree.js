@@ -2,24 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Comment from './Comment';
 import {expandType} from './Comment';
-
-const createCommentButton = (props) => {
-  if(!props.isAuthenticated) {
-    return(
-      <div id="buttonContainer">
-        <div id="button">
-          <div id="inscription">
-            <span id="plus" style={{color: "#009999", fontSize: "18px", marginRight: "5px"}}>+</span>
-            New comment</div>
-          <div id="bottom-border"></div>
-          <div id="right-border"></div>
-        </div>
-      </div>
-    );
-  }
-}
+import CommentCreateFormContainer from './../containers/CommentCreateFormContainer';
 
 class CommentTree extends React.Component {
+
   createTree(commentById) {
     let result = [];
     Object.values(commentById).filter(comment => comment.parentId == null).forEach(comment => {
@@ -28,15 +14,28 @@ class CommentTree extends React.Component {
     return result;
   }
 
+  onClickAnswerButton = (event) => {
+    let list = event.target.nextSibling;
+    if(getComputedStyle(list).display === "none") {
+      list.style.display = "inline-block";
+    } else {
+      list.style.display = "none";
+    }
+  }
+
   createTreeFromNode(commentById, comment, depth, result) {
     let marginLeft = this.props.indent * depth;
     result.push(
         <div className="comment_box" style={{marginLeft: marginLeft}} key={comment.id}>
           <Comment
+            id={comment.id}
             name={comment.visitorName}
+            rating={comment.rating}
             commentIsVisible={true}
             comment={comment.commentText}
             expandType={comment.expandType}
+            parentId={comment.parentId}
+            onClickAnswerButton={this.onClickAnswerButton}
             />
         </div>
       );
@@ -48,21 +47,35 @@ class CommentTree extends React.Component {
     }
   }
 
+  createCommentButton = () => {
+    if(!this.props.isAuthenticated) {
+      return(
+        <div id="buttonContainer">
+          <div id="button" onClick={this.props.onClickNewComment}>
+            <div id="inscription">
+              <span id="plus" style={{color: "#009999", fontSize: "18px", marginRight: "5px"}}>+</span>
+              New comment</div>
+            <div id="bottom-border"></div>
+            <div id="right-border"></div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
     return(
       <div id="comments_container">
-        {createCommentButton(this.props)}
+        {this.createCommentButton()}
+        <CommentCreateFormContainer />
         {this.createTree(this.props.commentById)}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  let props = {
-    isAuthenticated: state.server.user.isAuthenticated
-  };
-  return props;
+  return {isAuthenticated: state.server.user.isAuthenticated};
 };
 
 //function

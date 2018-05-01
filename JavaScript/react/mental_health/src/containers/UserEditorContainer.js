@@ -15,7 +15,6 @@ export default class UserEditorContainer extends React.Component {
       currency: "UAH",
       experience: formatDateUtils.formatToHtmlDateInput(new Date()),
       birthday: formatDateUtils.formatToHtmlDateInput(new Date()),
-      rating: 0.0,
       phoneNumber: "",
       email: "",
       linkedin: "",

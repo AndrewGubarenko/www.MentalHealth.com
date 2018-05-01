@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import CommentTree from './../components/CommentTree';
 import {connect} from 'react-redux';
 import {commentByIdStateType} from './../store/server/comment/CommentReducer';
@@ -25,11 +26,29 @@ class CommentTreeContainer extends React.Component {
       });
   }
 
+  onClickNewComment = () => {
+    let form = document.getElementById('comment-form-container');
+    let button = document.getElementsByClassName('hidedButton');
+    if(getComputedStyle(form).display === "none") {
+      form.style.display = "inline-block";
+      [].forEach.call(button, (item) => {
+        item.style.transition = "0.75s";
+      });
+    } else if(getComputedStyle(form).display === "inline-block") {
+      [].forEach.call(button, (item) => {
+        item.style.transition = "0s";
+      });
+      form.style.display = "none";
+    }
+  }
+
   render() {
     return(
       <CommentTree
+        onClickNewComment = {this.onClickNewComment}
         {...this.props}
-        indent={20}/>
+        indent={20}
+      />
     );
   }
 }

@@ -102,13 +102,13 @@ export default class UserEditor extends React.Component {
             </div>
           </div>
 
-            <div id="buttonContainer" style={{float: "right", marginRight: "60px"}}>
-              <div id="button" onClick={this.props.onClickSave}>
-                <div id="inscription" style={{fontWeight: "500"}}>Save</div>
-                <div id="bottom-border"></div>
-                <div id="right-border"></div>
-              </div>
+          <div id="buttonContainer" style={{float: "right", marginRight: "60px"}}>
+            <div id="button" onClick={this.props.onClickSave}>
+              <div id="inscription" style={{fontWeight: "500"}}>Save</div>
+              <div id="bottom-border"></div>
+              <div id="right-border"></div>
             </div>
+          </div>
 
         </div>
     );

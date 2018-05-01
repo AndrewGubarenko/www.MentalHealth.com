@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import './../css/Rating.css';
 
 const createEditButton = (props) => {
   if(props.isAuthenticated) {
@@ -30,10 +31,38 @@ class UserData extends React.Component {
         </div>
         <div id="speciality">
           <label type="text">{this.props.speciality}</label>
+          <div id="location">
+            <label type="text">{this.props.location}</label>
+          </div>
         </div>
-        <div id="location">
-          <label type="text">{this.props.location}</label>
-        </div>
+
+        <div id="ratingBlock">
+      		<div className="rating-view">
+      		    <ul className="rating">
+      		    	<li id="currentStar0" />
+      		    </ul>
+      		</div>
+      		<div className="rating-view">
+      		    <ul className="rating">
+      		    	<li id="currentStar1" />
+      		    </ul>
+      		</div>
+      		<div className="rating-view">
+      		    <ul className="rating">
+      		    	<li id="currentStar2" />
+      		    </ul>
+      		</div>
+      		<div className="rating-view">
+      		    <ul className="rating">
+      		    	<li id="currentStar3" />
+      		    </ul>
+      		</div>
+      		<div className="rating-view">
+      		    <ul className="rating">
+      		    	<li id="currentStar4" />
+      		    </ul>
+      		</div>
+      	</div>
       </div>
     );
   }

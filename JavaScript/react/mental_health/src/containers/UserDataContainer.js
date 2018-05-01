@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 //===========Comments================
 import {setCommentById} from './../store/server/comment/CommentActions';
 import {commentByIdStateType} from './../store/server/comment/CommentReducer';
-import CommentTree from './../components/CommentTree';
+import CommentTreeContainer from './../containers/CommentTreeContainer';
 //===========Comments================
 
 class UserDataContainer extends React.Component {
@@ -19,7 +19,6 @@ class UserDataContainer extends React.Component {
       speciality: "",
       location: "",
       userPhoto: "",
-      rating: "",
       essay: "",
       price: "",
       currency: "",
@@ -39,7 +38,7 @@ class UserDataContainer extends React.Component {
 
     let userDataArray = visitorService.getFullProfile(this.props.id).then((data) => {
       return data.json();
-    })
+    });
 
     let userData = userDataArray.then(dataList => {
       return dataList[0];
@@ -47,6 +46,29 @@ class UserDataContainer extends React.Component {
 
     let userCommentList = userDataArray.then(dataList => {
       return dataList[1];
+    });
+
+    userCommentList.then(commentList => {
+      let _rating = 0;
+      let counter = 0;
+      commentList.forEach(comment => {
+        if(comment.parentId == null) {
+          _rating = _rating + comment.rating;
+        counter += 1;
+        }
+      });
+      _rating = _rating/counter;
+      return _rating;
+    }).then(value => {
+      let fullStarsNumber = value | 0;
+  		let remainderStar = Math.round((value - fullStarsNumber)*100)/100;
+  		for (let i = 0; i < fullStarsNumber; i++) {
+  			let name = "currentStar" + i;
+  			document.getElementById(name).style.width = '100%';
+  		}
+  		let fillPart = (Math.asin(2 * remainderStar - 1) / Math.PI + 0.5)*100 | 0;
+  		let starName = "currentStar" + fullStarsNumber
+  		document.getElementById(starName).style.width = fillPart + '%';
     });
 
     if(this.props.isAuthenticated) {
@@ -90,7 +112,6 @@ class UserDataContainer extends React.Component {
         this.props.dispatch(setCommentById(commentById));
       });
 //===========Comments================
-
   }
 
   render(){
@@ -117,7 +138,7 @@ class UserDataContainer extends React.Component {
           userDiploma={this.state.userDiploma}
           history={this.props.history}
         />
-        <CommentTree
+      <CommentTreeContainer
           {...this.props}
           indent={20}/>
       </div>

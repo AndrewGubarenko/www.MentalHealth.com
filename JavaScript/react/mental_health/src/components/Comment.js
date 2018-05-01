@@ -7,17 +7,36 @@ const expandType = {
   canNotBeExpanded: "canNotBeExpanded"
 }
 
-const createControlElement = (props) => {
-  if(props.isAuthenticated) {
-    return(
-      <div style={{width: "60px"}}>
-        <a className="answer-btn">Answer</a>
-      </div>
-    );
-  }
-}
-
 class Comment extends React.Component {
+
+  createActionList = (parentId) => {
+    if(parentId == null) {
+      return(
+        <ul id="answer-list">
+          <li>Answer</li>
+          <li>Delete</li>
+        </ul>
+      );
+    } else {
+      return(
+        <ul id="answer-list">
+          <li>Delete</li>
+        </ul>
+      );
+    }
+  }
+
+  createControlElement = (props) => {
+    if(props.isAuthenticated) {
+      return(
+        <div style={{width: "30px"}}>
+          <span id="answer-btn" onClick={props.onClickAnswerButton}>&#9660;</span>
+          {this.createActionList(props.parentId)}
+        </div>
+      );
+    }
+  }
+
   getExpandSpan(expandType) {
     if(expandType === "isExpanded") {
       return(
@@ -38,8 +57,20 @@ class Comment extends React.Component {
     return null;
   }
 
+  getStars(parentId, rating) {
+    if(parentId == null) {
+      return(
+        <div className="commentRating-view">
+          <ul className="commentRating">
+            <li id="stars" style={{width: (rating/5*100) + "%"}}/>
+          </ul>
+        </div>
+      );
+    }
+  }
+
   render() {
-    const {name, commentIsVisible, comment, expandType} = this.props;
+    const {id, name, commentIsVisible, comment, expandType, parentId, rating} = this.props;
       return(
         <div>
           <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: "5px"}}>
@@ -50,8 +81,9 @@ class Comment extends React.Component {
               <span style={{cursor: "pointer"}}>
                 {name}
               </span>
+              {this.getStars(parentId, rating)}
             </div>
-            {createControlElement(this.props)}
+            {this.createControlElement(this.props)}
           </div>
           {commentIsVisible ? (
               <div style={{marginLeft: "20px", marginRight: "50px", color: "grey", fontStyle: "italic"}}>
