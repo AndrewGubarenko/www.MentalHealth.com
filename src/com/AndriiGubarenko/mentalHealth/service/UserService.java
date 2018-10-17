@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.User;
-import com.AndriiGubarenko.mentalHealth.repositories.UserCrud;
+import com.AndriiGubarenko.mentalHealth.repositories.UserRepository;
 
 @Component("userService")
 public class UserService implements IUserService {
 	
 	@Autowired
-	private UserCrud crud;
+	private UserRepository crud;
 	
 	@Override
 	@Transactional
@@ -39,13 +39,14 @@ public class UserService implements IUserService {
 	//TODO: implement correct return statement 
 	@Override
 	@Transactional
-	public String remove(Long userId) {
+	public User remove(Long userId) {
 		validationForRemove(userId);
 		authorizationForRemove(userId);
 		
-		crud.deleteById(userId);
+		User user = crud.findById(userId).get();
+		crud.delete(user);
 		
-		return "Your profile was completely removed";
+		return user;
 	}
 	
 	// TODO: implement method

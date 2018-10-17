@@ -11,16 +11,16 @@ export default class Footer extends React.Component {
             <h1>Logo</h1>
           </div>
           <div className="first_level_footer_container">
-            <Link to="#">About this site</Link>
-            <Link to="#">About owner</Link>
-            <Link to="#">Developers</Link>
-            <Link to="#">Link #</Link>
-          </div>
-          <div className="first_level_footer_container">
-            <Link to="#">Link 1</Link>
-            <Link to="#">Link 2</Link>
-            <Link to="#">Link 3</Link>
-            <Link to="#">Link 4</Link>
+            <div className="link_footer_container">
+              <span to="#">About this site</span>
+              <span to="#">About owner</span>
+              <span to="#">Developer</span>
+            </div>
+            <div className="link_footer_container">
+              <Link to="#">Link to "About this site"</Link>
+              <Link to="#">Link to "About owner"</Link>
+              <Link to="https://www.linkedin.com/in/andrii-hubarenko-1a2988116/">Anddrii Hubarenko</Link>
+            </div>
           </div>
         </div>
         <div id="second_level_footer">

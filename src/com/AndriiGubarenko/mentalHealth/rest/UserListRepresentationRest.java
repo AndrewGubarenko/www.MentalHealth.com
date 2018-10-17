@@ -1,4 +1,4 @@
-/*package com.AndriiGubarenko.mentalHealth.rest;
+package com.AndriiGubarenko.mentalHealth.rest;
 
 import java.util.List;
 
@@ -12,18 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AndriiGubarenko.mentalHealth.service.IUserListRepresentationService;
-import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserListRepresentation;
 
 @RestController
 public class UserListRepresentationRest {
+	
 	@Autowired
-	private IUserListRepresentationService service;
+	private IUserListRepresentationService userListRepresentationService;
 	
-	private String name;
-	
-	@RequestMapping(path = "userListRepresentation", method = RequestMethod.GET)
-	public ResponseEntity<List<PlainUserListRepresentation>> getList(HttpServletRequest request) {
-		List<PlainUserListRepresentation> result = service.getList(name);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+	@RequestMapping(path = "/UserListRepresentation", method = RequestMethod.GET)
+	public ResponseEntity<List<List<Object>>> getFullList(HttpServletRequest request) {
+		List<List<Object>> result = userListRepresentationService.getFullUserProfileList();
+		return new ResponseEntity<>(result, HttpStatus.OK);	
 	}
-}*/
+	
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public ResponseEntity<List<List<Object>>> getShortList(HttpServletRequest request) {
+		List<List<Object>> result = userListRepresentationService.getShortUserProfileList();
+		return new ResponseEntity<>(result, HttpStatus.OK);	
+	}
+}

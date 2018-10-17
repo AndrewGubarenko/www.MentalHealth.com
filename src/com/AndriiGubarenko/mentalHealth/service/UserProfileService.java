@@ -8,19 +8,40 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.User;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
-import com.AndriiGubarenko.mentalHealth.repositories.UserCrud;
-import com.AndriiGubarenko.mentalHealth.repositories.UserProfileCrud;
+import com.AndriiGubarenko.mentalHealth.repositories.UserProfileRepository;
+import com.AndriiGubarenko.mentalHealth.repositories.UserRepository;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 
-@Component
+@Component("userProfileService")
 public class UserProfileService implements IUserProfileService {
 	
 	@Autowired
-	private UserProfileCrud userProfileCrud;
+	private UserProfileRepository userProfileRepository;
 	
 	@Autowired
-	private UserCrud userCrud;
+	private UserRepository userRepository;
+	
+	private void updatePartOfUserProfile(UserProfile target, PlainUserProfile source) {
+		target.setName(source.getName());
+		target.setSurname(source.getSurname());
+		target.setSpeciality(source.getSpeciality());
+		target.setLocation(source.getLocation());
+		target.setEssay(source.getEssay());
+		target.setPrice(source.getPrice());
+		target.setCurrency(source.getCurrency());
+		target.setExperience((Date) source.getExperience().clone());
+		target.setBirthday((Date) source.getBirthday().clone());
+		target.setPhoneNumber(source.getPhoneNumber());
+		target.setEmail(source.getEmail());
+		target.setLinkedin(source.getLinkedin());
+		target.setFacebook(source.getFacebook());
+		target.setSkype(source.getSkype());
+		target.setUniversity(source.getUniversity());
+		
+		target.setUserPhoto(source.getUserPhoto());
+		target.setUserDiploma(source.getUserDiploma());
+	}
 
 	@Override
 	@Transactional
@@ -29,28 +50,9 @@ public class UserProfileService implements IUserProfileService {
 		authorizationForUpdate(userId, plainUserProfile);
 		
 		// TODO: Correct getting userProfile
-		UserProfile userProfile = userProfileCrud.findById(plainUserProfile.getId()).get();
+		UserProfile userProfile = userProfileRepository.findById(plainUserProfile.getId()).get();
 
-		userProfile.setName(plainUserProfile.getName());
-		userProfile.setSurname(plainUserProfile.getSurname());
-		userProfile.setSpeciality(plainUserProfile.getSpeciality());
-		userProfile.setLocation(plainUserProfile.getLocation());
-		userProfile.setEssay(plainUserProfile.getEssay());
-		userProfile.setPrice(plainUserProfile.getPrice());
-		userProfile.setCurrency(plainUserProfile.getCurrency());
-		userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
-		userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
-		userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
-		userProfile.setEmail(plainUserProfile.getEmail());
-		userProfile.setLinkedin(plainUserProfile.getLinkedin());
-		userProfile.setFacebook(plainUserProfile.getFacebook());
-		userProfile.setSkype(plainUserProfile.getSkype());
-		userProfile.setUniversity(plainUserProfile.getUniversity());
-		
-		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
-		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
-		
-		//userProfile.setComments(plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
+		updatePartOfUserProfile(userProfile, plainUserProfile);
 
 		return Converter.toPlainUserProfile(userProfile);
 	}
@@ -71,7 +73,7 @@ public class UserProfileService implements IUserProfileService {
 		validationForGet(userId, userProfileId);
 		authorizationForGet(userId, userProfileId);
 
-		UserProfile userProfile = userProfileCrud.findById(userProfileId).get();
+		UserProfile userProfile = userProfileRepository.findById(userProfileId).get();
 
 		return Converter.toPlainUserProfile(userProfile);
 	}
@@ -93,31 +95,12 @@ public class UserProfileService implements IUserProfileService {
 
 		UserProfile userProfile = new UserProfile();
 
-		userProfile.setName(plainUserProfile.getName());
-		userProfile.setSurname(plainUserProfile.getSurname());
-		userProfile.setSpeciality(plainUserProfile.getSpeciality());
-		userProfile.setLocation(plainUserProfile.getLocation());
-		userProfile.setEssay(plainUserProfile.getEssay());
-		userProfile.setPrice(plainUserProfile.getPrice());
-		userProfile.setCurrency(plainUserProfile.getCurrency());
-		userProfile.setExperience((Date) plainUserProfile.getExperience().clone());
-		userProfile.setBirthday((Date) plainUserProfile.getBirthday().clone());
-		userProfile.setPhoneNumber(plainUserProfile.getPhoneNumber());
-		userProfile.setEmail(plainUserProfile.getEmail());
-		userProfile.setLinkedin(plainUserProfile.getLinkedin());
-		userProfile.setFacebook(plainUserProfile.getFacebook());
-		userProfile.setSkype(plainUserProfile.getSkype());
-		userProfile.setUniversity(plainUserProfile.getUniversity());
+		updatePartOfUserProfile(userProfile, plainUserProfile);
 		
-		userProfile.setUserPhoto(plainUserProfile.getUserPhoto());
-		userProfile.setUserDiploma(plainUserProfile.getUserDiploma());
-		
-		User user = userCrud.findById(userId).get();
+		User user = userRepository.findById(userId).get();
 		userProfile.setUser(user);
 		
-		userProfileCrud.save(userProfile);
-		
-		//createComments(plainUserProfile.getCommentIds()).forEach(userProfile::addComment);
+		userProfileRepository.save(userProfile);
 		
 		PlainUserProfile result = Converter.toPlainUserProfile(userProfile);
 		
@@ -128,13 +111,4 @@ public class UserProfileService implements IUserProfileService {
 	private void validationForCreate(Long userId, PlainUserProfile plainUserProfile) {
 
 	}
-	
-/*	private List<Comment> createComments(EntityManager entityManager, Collection<PlainComment> plainComments) {
-		return plainComments.stream().map(plainComment -> {
-			Comment comment = new Comment();
-			entityManager.persist(comment);
-			return comment;
-		}).collect(Collectors.toList());
-	}*/
-
 }

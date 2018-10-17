@@ -1,9 +1,9 @@
 .Footer {
-  display: block;
+  display: inline-block;
+  box-sizing: border-box;
   width: 100%;
   padding-bottom: 10px;
   background-color: #02364c;
-  overflow: auto;
 }
 
 .Footer p{
@@ -16,22 +16,28 @@
 #first_level_footer {
   padding: 40px 0 20px 350px;
   background-color: #d4e1e9;
-  min-height: 120px;
+  height: 120px;
 }
 
 .first_level_footer_container {
-  margin-left: 100px;
-  text-align: center;
-  float: left;
-  width: 150px;
+
 }
 
-.first_level_footer_container a {
-  text-align: center;
+.first_level_footer_container a, span {
   margin: 0 20px 10px 20px;
   display: inline-block;
   text-decoration: none;
   color: #037492;
+}
+
+.link_footer_container {
+  margin-left: 100px;
+  text-align: center;
+  float: left;
+  width: 200px;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
 .first_level_footer_container a:hover {

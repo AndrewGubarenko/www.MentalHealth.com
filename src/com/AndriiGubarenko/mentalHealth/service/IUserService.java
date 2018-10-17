@@ -8,6 +8,6 @@ public interface IUserService {
 
 	User findUserByLoginAndPassword(String login, String password);
 
-	String remove(Long userId);
+	User remove(Long userId);
 
 }

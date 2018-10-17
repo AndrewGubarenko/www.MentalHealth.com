@@ -60,15 +60,18 @@ class UserDataContainer extends React.Component {
       _rating = _rating/counter;
       return _rating;
     }).then(value => {
+
       let fullStarsNumber = value | 0;
   		let remainderStar = Math.round((value - fullStarsNumber)*100)/100;
   		for (let i = 0; i < fullStarsNumber; i++) {
   			let name = "currentStar" + i;
   			document.getElementById(name).style.width = '100%';
   		}
-  		let fillPart = (Math.asin(2 * remainderStar - 1) / Math.PI + 0.5)*100 | 0;
-  		let starName = "currentStar" + fullStarsNumber
-  		document.getElementById(starName).style.width = fillPart + '%';
+      if(remainderStar !== 0) {
+        let fillPart = (Math.asin(2 * remainderStar - 1) / Math.PI + 0.5)*100 | 0;
+    		let starName = "currentStar" + fullStarsNumber;
+    		document.getElementById(starName).style.width = fillPart + '%';
+      }
     });
 
     if(this.props.isAuthenticated) {

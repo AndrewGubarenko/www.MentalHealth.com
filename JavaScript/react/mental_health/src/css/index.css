@@ -1,11 +1,24 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+html .wrapper {
+    height: 100%;
+}
+
 body {
   margin: 0;
 	padding: 0;
 	border: 0;
+	height: 100%;
+  width: 100%;
 	font: inherit;
 	font-size: 100%;
 	vertical-align: baseline;
   background-color: #f9f7f6;
-  overflow-x: hidden;
 /*  background-image: url(../icons/dot12_small.png);*/
 }

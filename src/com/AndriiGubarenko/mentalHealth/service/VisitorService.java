@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
-import com.AndriiGubarenko.mentalHealth.repositories.VisitorCrud;
+import com.AndriiGubarenko.mentalHealth.repositories.VisitorRepository;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainUserProfile;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
@@ -15,7 +15,7 @@ import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 @Component
 public class VisitorService implements IVisitorService {
 	@Autowired
-	private VisitorCrud visitorCrud;
+	private VisitorRepository visitorRepository;
 	
 	@Autowired
 	private ICommentService commentService;
@@ -24,7 +24,7 @@ public class VisitorService implements IVisitorService {
 	@Transactional(readOnly = true)
 	public Object[] getFullProfile(Long userProfileId) {
 
-		UserProfile userProfile = visitorCrud.findById(userProfileId).get();
+		UserProfile userProfile = visitorRepository.findById(userProfileId).get();
 		
 		List<PlainComment> commentList = commentService.getList(userProfileId);
 		

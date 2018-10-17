@@ -9,18 +9,22 @@ const expandType = {
 
 class Comment extends React.Component {
 
+  onClickDeleteComment = () => {
+    this.props.onClickDeleteComment(this.props.id);
+  }
+
   createActionList = (parentId) => {
     if(parentId == null) {
       return(
         <ul id="answer-list">
           <li>Answer</li>
-          <li>Delete</li>
+          <li onClick={this.onClickDeleteComment}>Delete</li>
         </ul>
       );
     } else {
       return(
         <ul id="answer-list">
-          <li>Delete</li>
+          <li onClick={this.onClickDeleteComment}>Delete</li>
         </ul>
       );
     }
@@ -30,23 +34,33 @@ class Comment extends React.Component {
     if(props.isAuthenticated) {
       return(
         <div style={{width: "30px"}}>
-          <span id="answer-btn" onClick={props.onClickAnswerButton}>&#9660;</span>
+          <span id="answer-btn" onClick={props.onClickDropDownButton}>&#9660;</span>
           {this.createActionList(props.parentId)}
         </div>
       );
     }
   }
 
+  onClickRollUp = () => {
+    let id = this.props.id;
+    this.props.onClickExpand(id, expandType.isNotExpanded);
+  }
+
+  onClickRollDown = () => {
+    let id = this.props.id;
+    this.props.onClickExpand(id, expandType.isExpanded);
+  }
+
   getExpandSpan(expandType) {
     if(expandType === "isExpanded") {
       return(
-        <span className="roll-up">&#5123;</span>
+        <span className="roll-up" onClick={this.onClickRollUp}>&#5123;</span>
       );
     }
 
     if(expandType === "isNotExpanded") {
       return(
-        <span className="roll-down">&#5121;</span>
+        <span className="roll-down" onClick={this.onClickRollDown}>&#5121;</span>
       );
     }
 
@@ -70,7 +84,7 @@ class Comment extends React.Component {
   }
 
   render() {
-    const {id, name, commentIsVisible, comment, expandType, parentId, rating} = this.props;
+    const {name, commentIsVisible, comment, expandType, parentId, rating} = this.props;
       return(
         <div>
           <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: "5px"}}>

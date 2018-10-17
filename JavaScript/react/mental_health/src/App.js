@@ -1,11 +1,11 @@
 import React from 'react';
 import NavigationBarContainer from './containers/NavigationBarContainer';
-import WelcomeContent from './components/WelcomeContent';
+import MainPage from './pages/MainPage';
 import RegistrationContainer from './containers/RegistrationContainer';
 import AuthenticationContainer from './containers/AuthenticationContainer';
+import UserPlateRepresentationListContainer from './containers/UserPlateRepresentationListContainer';
 import UserEditorPage from './pages/UserEditPage';
 import UserViewPage from './pages/UserViewPage';
-import MainPage from './pages/MainPage';
 import Footer from './components/Footer';
 import './css/FormStyle.css';
 
@@ -31,15 +31,13 @@ class App extends React.Component {
               <Route path="/" component={NavigationBarContainer} />
             </header>
 
-            <Route exact path="/" component={WelcomeContent} />
+            <Route exact path="/" component={MainPage} />
             <Route exact path="/registration" component={RegistrationContainer} />
             <Route exact path="/authentication" component={AuthenticationContainer} />
-
             <Route exact path="/UserViewPage/:id" component={UserViewPage} />
-            <Route exact path="/MainPage" component={MainPage} />
-
             <Route exact path="/UserEditor/new/" component={UserEditorPage} />
             <Route exact path="/UserEditor/edit/:id" component={UserEditorPage} />
+            <Route exact path="/UserListRepresentation" component={UserPlateRepresentationListContainer} />
 
             <footer>
               <Route path="/" component={Footer} />

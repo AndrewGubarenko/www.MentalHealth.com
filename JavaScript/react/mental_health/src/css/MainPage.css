@@ -1,0 +1,57 @@
+#welcome_content_container {
+  height: 77vh;
+}
+
+#user_plates_container {
+  min-height: 600px;
+  background-color: #333333;
+  padding-top: 30px;
+}
+
+#user_plates_container h1 {
+  color: #3ECC77;
+  font-size: 48px;
+  text-align: center;
+
+}
+
+#articles {
+  min-height: 300px;
+}
+
+#arrow_container {
+  width: 200px;
+  margin: 200px auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#arrow_inscription {
+  display: inline-block;
+  box-sizing: border-box;
+  color: #3ECC77;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#arrow {
+  display: inline-block;
+  box-sizing: border-box;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  transform: scale(0.99999);
+  border-top: 30px solid #e2cf11;
+  position: absolute;
+  margin-top: 40px;
+  margin-left: -150px;
+}
+#arrow::before {
+  content: '';
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 30px solid #f9f7f6;
+  position: absolute;
+  margin-top: -35px;
+  margin-left: -50px;
+}

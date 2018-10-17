@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import CommentTree from './../components/CommentTree';
 import {connect} from 'react-redux';
 import {commentByIdStateType} from './../store/server/comment/CommentReducer';
 import {visitorService} from './../appContext/Context';
-import {setCommentById} from './../store/server/comment/CommentActions';
+import {setCommentById, removeComment} from './../store/server/comment/CommentActions';
+import {updateUiPartOfComment} from './../store/ui/commentTree/uiCommentActions';
+import {commentService} from './../appContext/Context';
 
 class CommentTreeContainer extends React.Component {
 
@@ -42,10 +43,36 @@ class CommentTreeContainer extends React.Component {
     }
   }
 
+  onClickDropDownButton = (event) => {
+    let list = event.target.nextSibling;
+    if(getComputedStyle(list).display === "none") {
+      list.style.display = "inline-block";
+    } else {
+      list.style.display = "none";
+    }
+  }
+
+  onClickExpand = (id, expandType) => {
+    this.props.dispatch(updateUiPartOfComment({
+      id,
+      expandType
+    }));
+  }
+
+  onClickDeleteComment = (commentId) => {
+    let userProfileId = this.props.id;
+    commentService.remove(userProfileId, commentId).then(() => {
+      this.props.dispatch(removeComment(commentId));
+    });
+  }
+
   render() {
     return(
       <CommentTree
-        onClickNewComment = {this.onClickNewComment}
+        onClickNewComment={this.onClickNewComment}
+        onClickExpand={this.onClickExpand}
+        onClickDeleteComment={this.onClickDeleteComment}
+        onClickDropDownButton={this.onClickDropDownButton}
         {...this.props}
         indent={20}
       />

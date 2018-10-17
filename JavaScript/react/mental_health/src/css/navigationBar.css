@@ -67,10 +67,10 @@
     display: none;
   }
   #nav_bar_full {
+    display: inline-block;
+    box-sizing: border-box;
     background-color: #02364c;
   	width: 100%;
-    position: absolute;
-    overflow: auto;
   }
   #nav_container {
     margin: 0 50px 0 50px;

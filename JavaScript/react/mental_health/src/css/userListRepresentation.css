@@ -1,0 +1,56 @@
+#user_representation_container {
+  border: 2px solid #3ECC77;
+  background-color: #333333;
+  margin: 30px auto auto 30px;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 350px;
+  height: 142px;
+  float: left;
+}
+
+#user_representation_container, #user_data_container, .data_row:hover {
+  cursor: pointer;
+}
+
+#user_photo_min_container {
+  margin: 20px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #3ECC77;
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-image: url(../icons/instead-user-photo.jpg);
+  background-size: 100px 100px;
+}
+
+#user_photo_min {
+  position: relative;
+  width: 98px;
+  height: 98px;
+}
+
+#user_data_container {
+  float: left;
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+}
+
+.data_row {
+  display: block;
+  margin: 1px;
+  text-align: center;
+  color: white;
+}
+
+#data_row_name {
+  color: #3ECC77;
+  font-size: 22px;
+}
+
+#user_rating_container {
+  display: inline-block;
+  float: right;
+}

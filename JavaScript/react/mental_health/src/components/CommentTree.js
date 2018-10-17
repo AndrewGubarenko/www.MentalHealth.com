@@ -14,15 +14,6 @@ class CommentTree extends React.Component {
     return result;
   }
 
-  onClickAnswerButton = (event) => {
-    let list = event.target.nextSibling;
-    if(getComputedStyle(list).display === "none") {
-      list.style.display = "inline-block";
-    } else {
-      list.style.display = "none";
-    }
-  }
-
   createTreeFromNode(commentById, comment, depth, result) {
     let marginLeft = this.props.indent * depth;
     result.push(
@@ -36,6 +27,9 @@ class CommentTree extends React.Component {
             expandType={comment.expandType}
             parentId={comment.parentId}
             onClickAnswerButton={this.onClickAnswerButton}
+            onClickExpand={this.props.onClickExpand}
+            onClickDeleteComment={this.props.onClickDeleteComment}
+            onClickDropDownButton={this.props.onClickDropDownButton}
             />
         </div>
       );

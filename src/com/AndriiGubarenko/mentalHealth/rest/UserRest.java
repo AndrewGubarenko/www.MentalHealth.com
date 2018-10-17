@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,8 +62,8 @@ public class UserRest {
 	//TODO: verify this
 	@RequestMapping(path = "/userProfile/{id}", method = RequestMethod.DELETE)
 	@Authenticational
-	public ResponseEntity<String> remove(HttpServletRequest request, @PathVariable Long id) {
-		String result = userService.remove(userId);
+	public ResponseEntity<User> remove(HttpServletRequest request) {
+		User result = userService.remove(userId);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

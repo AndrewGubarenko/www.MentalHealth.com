@@ -10,4 +10,6 @@ public interface ICommentService {
 	
 	List<PlainComment> getList(Long userProfileId);
 
+	PlainComment remove(Long userId, Long userProfileId, Long commentId);
+
 }

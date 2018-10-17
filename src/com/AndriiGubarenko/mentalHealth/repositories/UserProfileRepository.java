@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
 
-public interface VisitorCrud extends CrudRepository<UserProfile, Long>{
-	
+public interface UserProfileRepository extends CrudRepository<UserProfile, Long>{
+
 }

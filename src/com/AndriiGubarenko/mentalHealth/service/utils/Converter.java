@@ -1,5 +1,8 @@
 package com.AndriiGubarenko.mentalHealth.service.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.AndriiGubarenko.mentalHealth.domain.Comment;
@@ -58,16 +61,35 @@ public class Converter {
 		}
 	}
 	
-/*	public static PlainUserListRepresentation toPlain(UserListRepresentation userListRepresentation) {
-		PlainUserListRepresentation result = new PlainUserListRepresentation();
+	public static List<Object> toPlainUserProfileList(UserProfile userProfile) {
+		PlainUserProfile plainUserProfile = new PlainUserProfile();
+
+		plainUserProfile.setId(userProfile.getId());
+		plainUserProfile.setName(userProfile.getName());
+		plainUserProfile.setSurname(userProfile.getSurname());
+		plainUserProfile.setSpeciality(userProfile.getSpeciality());
+		plainUserProfile.setLocation(userProfile.getLocation());
+		plainUserProfile.setPrice(userProfile.getPrice());
+		plainUserProfile.setCurrency(userProfile.getCurrency());
+		plainUserProfile.setExperience(userProfile.getExperience());
 		
-		result.setByName(userListRepresentation.getByName());
-		result.setBySurname(userListRepresentation.getBySurname());
-		result.setBySpeciality(userListRepresentation.getBySpeciality());
-		result.setByLocation(userListRepresentation.getByLocation());
-		result.setByPrice(userListRepresentation.getByPrice());
-		result.setByCurrency(userListRepresentation.getByCurrency());
+		plainUserProfile.setUserPhoto(userProfile.getUserPhoto());
+		
+		Double rating = 0.0;
+		int counter = 0;
+		Set<Comment> list = userProfile.getCommentList();
+		for(Comment comment : list) {
+			if(comment.getParent() == null) {
+				rating += comment.getRating();
+				counter++;
+			}
+		}
+		
+		rating = rating/counter;
+		List<Object> result = new ArrayList<>();
+		result.add(plainUserProfile);
+		result.add(rating);
 		
 		return result;
-	}*/
+	}
 }

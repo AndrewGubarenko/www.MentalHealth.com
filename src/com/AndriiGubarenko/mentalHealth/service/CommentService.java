@@ -9,18 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.AndriiGubarenko.mentalHealth.domain.Comment;
 import com.AndriiGubarenko.mentalHealth.domain.UserProfile;
-import com.AndriiGubarenko.mentalHealth.repositories.CommentCrud;
-import com.AndriiGubarenko.mentalHealth.repositories.UserProfileCrud;
+import com.AndriiGubarenko.mentalHealth.repositories.CommentRepository;
+import com.AndriiGubarenko.mentalHealth.repositories.UserProfileRepository;
 import com.AndriiGubarenko.mentalHealth.service.domain.PlainComment;
 import com.AndriiGubarenko.mentalHealth.service.utils.Converter;
 
 @Component("commentService")
 public class CommentService implements ICommentService {
 	@Autowired
-	private CommentCrud commentCrud;
+	private CommentRepository commentRepository;
 	
 	@Autowired
-	private UserProfileCrud userProfileCrud;
+	private UserProfileRepository userProfileRepository;
 	
 	@Override
 	@Transactional
@@ -33,10 +33,10 @@ public class CommentService implements ICommentService {
 		setParent(comment, plainComment.getParentId());
 		
 		
-		UserProfile userProfile = userProfileCrud.findById(userProfileId).get();
+		UserProfile userProfile = userProfileRepository.findById(userProfileId).get();
 		comment.setUserProfile(userProfile);
 		
-		commentCrud.save(comment);
+		commentRepository.save(comment);
 		
 		PlainComment result = Converter.toPlainComment(comment);
 		
@@ -47,7 +47,7 @@ public class CommentService implements ICommentService {
 		if (parentId == null) {
 			target.removeParent();
 		} else {
-			target.setParent(commentCrud.findById(parentId).get());
+			target.setParent(commentRepository.findById(parentId).get());
 		}
 	}
 	
@@ -55,7 +55,31 @@ public class CommentService implements ICommentService {
 	@Transactional(readOnly = true)
 	public List<PlainComment> getList(Long userProfileId) {
 		
-		List<Comment> commentList = commentCrud.findByUserProfileId(userProfileId);
+		List<Comment> commentList = commentRepository.findByUserProfileId(userProfileId);
 		return commentList.stream().map(Converter::toPlainComment).collect(Collectors.toList());
 	}
+	
+	//TODO: implement correct return statement 
+		@Override
+		@Transactional
+		public PlainComment remove(Long userId, Long userProfileId, Long commentId) {
+			validationForRemoveComment(userId, userProfileId, commentId);
+			authorizationForRemoveComment(userId, userProfileId, commentId);
+			
+			Comment comment = commentRepository.findById(commentId).get();
+			PlainComment result = Converter.toPlainComment(comment);
+			commentRepository.delete(comment);
+
+			return result;
+		}
+		
+		// TODO: implement method
+		private void validationForRemoveComment(Long userId, Long userProfileId, Long commentId) {
+
+		}
+
+		// TODO: implement method
+		private void authorizationForRemoveComment(Long userId, Long userProfileId, Long commentId) {
+
+		}
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {commentService} from './../appContext/Context';
 import CommentCreateForm from './../components/CommentCreateForm';
+import {addComment} from './../store/server/comment/CommentActions';
 
 class CommentCreateFormContainer extends React.Component {
   constructor(props) {
@@ -30,9 +31,15 @@ class CommentCreateFormContainer extends React.Component {
   }
 
   onClickSendComment = () => {
+    let form = document.getElementById('comment-form-container');
+    let button = document.getElementsByClassName('hidedButton');
     let comment = this._getFormattedCommentToService();
-    commentService.create(comment, this.props.id).then(() => {
-      window.location.reload(true);
+    commentService.create(comment, this.props.id).then(data => data.json()).then((comment) => {
+      this.props.dispatch(addComment(comment));
+      [].forEach.call(button, (item) => {
+        item.style.transition = "0s";
+      });
+      form.style.display = "none";
     });
   }
 

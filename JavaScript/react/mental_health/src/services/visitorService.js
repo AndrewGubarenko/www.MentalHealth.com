@@ -10,4 +10,23 @@ export default class VisitorService {
       })
     });
   }
+
+  getFullUserProfileListRepresentation() {
+    return fetch(this.startUrl + "UserListRepresentation", {
+      method: "get",
+      headers: new Headers({
+        "Content-type": "application/json;chartSet=UTF-8"
+      })
+    });
+  }
+
+  getShortUserProfileListRepresentation() {
+    return fetch(this.startUrl, {
+      method: "get",
+      headers: new Headers({
+        "Content-type": "application/json;chartSet=UTF-8"
+      })
+    });
+  }
+  
 }
